@@ -8,10 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.myclass.core.BaseEntity;
 
-@Entity(name = "user_courses")
+@Entity
+@Table(name = "user_courses")
 public class UserCourses extends BaseEntity implements Serializable {
 
 		@Id
@@ -21,55 +23,10 @@ public class UserCourses extends BaseEntity implements Serializable {
 		
 		@Id
 		@ManyToOne(cascade = CascadeType.ALL)
-		@JoinColumn(name = "courses_id")
-		private Courses course;
+		@JoinColumn(name = "course_id")
+		private Course course;
 		
-		private int role_id;
+		@Column(name = "role_id", nullable = false)
+		private int roleId;
 
-		public User getUser() {
-			return user;
-		}
-
-		public void setUser(User user) {
-			this.user = user;
-		}
-
-		public Courses getCourse() {
-			return course;
-		}
-
-		public void setCourse(Courses course) {
-			this.course = course;
-		}
-
-		public int getRole_id() {
-			return role_id;
-		}
-
-		public void setRole_id(int role_id) {
-			this.role_id = role_id;
-		}
-
-		/**
-		 * @param user
-		 * @param course
-		 * @param role_id
-		 */
-		public UserCourses(User user, Courses course, int role_id) {
-			super();
-			this.user = user;
-			this.course = course;
-			this.role_id = role_id;
-		}
-
-		/**
-		 * 
-		 */
-		public UserCourses() {
-			super();
-		}
-		
-		
-		
-		
 }
