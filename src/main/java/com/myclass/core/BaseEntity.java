@@ -10,17 +10,20 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import lombok.Data;
+
 @MappedSuperclass
 @EntityListeners({AuditingEntityListener.class})
-public class BaseEntity {
+@Data
+public class BaseEntity<T extends BaseEntity> {
 
-	@Column(name = "creatAt")
+	@Column(name = "createAt")
 	@CreationTimestamp
-	private LocalTime creatAt;
+	private LocalTime createAt;
 	@Column(name = "updateAt")
 	@UpdateTimestamp
 	private LocalTime updateAt;
 	@Column(name = "active")
 	private boolean active;
-	
+
 }
