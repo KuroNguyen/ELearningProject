@@ -24,6 +24,6 @@ public class BaseEntity<T extends BaseEntity> {
 	@UpdateTimestamp
 	private LocalTime updateAt;
 	@Column(name = "active")
-	private boolean active;
+	private boolean active = true;
 
 }

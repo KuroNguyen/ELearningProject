@@ -80,7 +80,7 @@ public class AdminRoleController {
 	}
 	
 	@DeleteMapping("{id}")
-	public Object put(@PathVariable int id) {
+	public Object delete(@PathVariable int id) {
 		try {
 			roleService.delete(id);
 			return new ResponseEntity<Object>(HttpStatus.OK);

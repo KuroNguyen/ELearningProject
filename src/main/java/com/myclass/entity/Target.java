@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.myclass.core.BaseEntity;
 
 import lombok.Data;
@@ -17,6 +20,8 @@ import lombok.NoArgsConstructor;
 @Entity(name = "targets")
 @Data
 @NoArgsConstructor
+@Where(clause = "active='true'")
+@SQLDelete(sql = "UPDATE users SET active = false WHERE id = ?")
 public class Target extends BaseEntity{
 
 		@Id

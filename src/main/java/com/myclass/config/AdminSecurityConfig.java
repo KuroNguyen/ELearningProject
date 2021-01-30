@@ -47,8 +47,8 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
 					"/swagger-resources/**",
 					"/configuration/security",
 					"/swagger-ui.html",
-					"/webjars/**"
-					/*"/api/admin/auth/login"*/);
+					"/webjars/**",
+					"/api/admin/auth/login");
 	}
 	
 	@Override

@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.myclass.core.BaseEntity;
 
 import lombok.Data;
@@ -20,9 +23,10 @@ import lombok.NoArgsConstructor;
 @Table(name = "roles")
 @Data
 @NoArgsConstructor
-public class Role extends BaseEntity{
+@Where(clause = "active=true")
+@SQLDelete(sql = "UPDATE roles SET active = false WHERE id = ?")
+public class Role extends BaseEntity {
 
-	
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int id;
@@ -35,5 +39,4 @@ public class Role extends BaseEntity{
 		@OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
 		private List<User> users;
 			
-		
 }

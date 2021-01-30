@@ -48,7 +48,14 @@ public class AuthFilter extends BasicAuthenticationFilter {
 				.getBody()
 				.getSubject();
 		// Get user information (UserDetailDto)
-		UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+		UserDetails userDetails;
+		try {
+			userDetails = userDetailsService.loadUserByUsername(email);
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+			response.sendError(401, e.getMessage());
+			return;
+		}
 		
 		Authentication authentication =
 				new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
