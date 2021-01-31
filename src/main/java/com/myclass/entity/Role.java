@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Where(clause = "active=true")
 @SQLDelete(sql = "UPDATE roles SET active = false WHERE id = ?")
-public class Role extends BaseEntity {
+public class Role extends BaseEntity<String> {
 
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)

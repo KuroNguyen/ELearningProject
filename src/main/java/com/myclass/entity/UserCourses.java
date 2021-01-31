@@ -14,7 +14,7 @@ import com.myclass.core.BaseEntity;
 
 @Entity
 @Table(name = "user_courses")
-public class UserCourses extends BaseEntity implements Serializable {
+public class UserCourses extends BaseEntity<String> implements Serializable {
 
 		@Id
 		@ManyToOne(cascade = CascadeType.ALL)

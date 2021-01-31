@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "videos")
 @Data
 @NoArgsConstructor
-public class Video extends BaseEntity {
+public class Video extends BaseEntity<String> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

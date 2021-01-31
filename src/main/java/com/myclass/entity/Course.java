@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.myclass.core.BaseEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,7 +30,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "courses")
 @Data
 @NoArgsConstructor
-public class Course {
+public class Course extends BaseEntity<String>{
 	
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Where(clause = "active='true'")
 @SQLDelete(sql = "UPDATE users SET active = false WHERE id = ?")
-public class Target extends BaseEntity{
+public class Target extends BaseEntity<String>{
 
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
