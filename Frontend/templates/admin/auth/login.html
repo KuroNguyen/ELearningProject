@@ -48,15 +48,15 @@
                                 </div>
                                 <div class="form-group form-primary">
                                     <label for="">Email</label>
-                                    <input type="text" name="email" class="form-control">
+                                    <input type="email" name="email" class="form-control" id="lgEmail">
                                 </div>
                                 <div class="form-group form-primary">
                                     <label for="">Mật khẩu</label>
-                                    <input type="password" name="password" class="form-control">
+                                    <input type="password" name="password" class="form-control" id="lgPassword">
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
+                                        <button type="button" onclick="login()" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
                                     </div>
                                 </div>
                             </div>
@@ -77,6 +77,10 @@
     <script type="text/javascript" src="../assets/plugins/jquery-ui/js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../assets/plugins/popper.js/js/popper.min.js"></script>
     <script type="text/javascript" src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Control js -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../assets/js/auth/login.js"></script>
 </body>
 
 </html>

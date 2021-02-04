@@ -32,25 +32,37 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public List<CategoryDto> getAll() {
 		List<Category> entities = categoryRepository.findAll();
-		return entities.stream().map((entity) -> convertEntityToDto(entity)).collect(Collectors.toList());
+		return entities.stream() // Convert to stream
+				.map((entity) -> convertEntityToDto(entity)) // convert from entity to dto
+				.collect(Collectors.toList()); // collect dtos to list
 	}
 
 	@Override
 	public CategoryDto getById(int id) {
-		// TODO Auto-generated method stub
+		// Get category from database
+		Category entity = categoryRepository.findById(id).get();
+		if (entity != null) {
+			return convertEntityToDto(entity);	
+		}
 		return null;
 	}
 
 	@Override
 	public void edit(CategoryDto dto) {
-		// TODO Auto-generated method stub
-
+		// Get category from database
+		Category entity = categoryRepository.findById(dto.getId()).get();
+		if (entity == null) return;
+		// Set data from dto to entity
+		entity.setTitle(dto.getTitle());
+		entity.setIcon(dto.getIcon());
+		// Update category
+		categoryRepository.save(entity);
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-
+		// Delete category
+		categoryRepository.deleteById(id);
 	}
 
 	CategoryDto convertEntityToDto(Category category) {

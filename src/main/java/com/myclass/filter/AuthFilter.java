@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 
 /**
@@ -42,11 +43,20 @@ public class AuthFilter extends BasicAuthenticationFilter {
 		}
 		// Decrypt token to get email
 		String token = tokenHeader.replace("Bearer ", "");
-		String email = Jwts.parser()
-				.setSigningKey("ABC_EGH")
-				.parseClaimsJws(token)
-				.getBody()
-				.getSubject();
+		String email = null;
+		try {
+			email = Jwts.parser()
+					.setSigningKey("ABC_EGH")
+					.parseClaimsJws(token)
+					.getBody()
+					.getSubject();
+		} catch (Exception e) {
+			if (e instanceof ExpiredJwtException) {
+				response.sendError(401, "Hết hạn token");
+			}
+			return;
+		}
+		
 		// Get user information (UserDetailDto)
 		UserDetails userDetails;
 		try {

@@ -230,61 +230,68 @@
                           <ul class="breadcrumb-title">
                             <li class="breadcrumb-item">
                               <a href="/admin">
-                                <i class="feather icon-home"></i> Trang chủ
-                              </a>
+                                <i class="feather icon-home"></i> Trang chủ</a
+                              >
                             </li>
                             <li class="breadcrumb-item">
-                              <a href="#!">Danh sách danh mục</a>
+                              <a href="/admin/category">Danh mục</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                              <a href="#!">Cập nhật danh mục</a>
                             </li>
                           </ul>
                         </div>
                       </div>
                       <div class="col-sm-12">
-                        <div class="card px-3">
-                          <div class="card-header px-0 pb-2">
+                        <div class="card">
+                          <div class="card-header">
                             <h2 class="text-uppercase text-center">
-                              Danh sách danh mục
+                              Cập nhật danh mục
                             </h2>
-                            <a
-                              href="category-add.html"
-                              class="btn btn-sm btn-primary"
-                              >Thêm mới</a
-                            >
                           </div>
-                          <div class="card-block table-border-style">
-                            <div class="table-responsive">
-                              <table class="table table-bordered">
-                                <thead>
-                                  <tr>
-                                    <th>STT</th>
-                                    <th>Tiêu Đề</th>
-                                    <th>Icon</th>
-                                    <th>Hành Động</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="tbodyCategories">
-                                  <tr>
-                                    <th>1</th>
-                                    <td>Developer</td>
-                                    <td>
-                                      <h4><i class="fa fa-laptop"></i></h4>
-                                    </td>
-                                    <td>
-                                      <a
-                                        href="#"
-                                        class="btn btn-sm btn-info btn-round py-1 font-weight-bold"
-                                        >Sửa</a
-                                      >
-                                      <a
-                                        href="#"
-                                        class="btn btn-sm btn-danger btn-round py-1 font-weight-bold"
-                                        >Xóa</a
-                                      >
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
+                          <div class="card-block">
+                            <form
+                              action="${ action }"
+                              method="post"
+                              modelAttribute="category"
+                            >
+                              <div class="row">
+                                <div class="col-md-6 m-auto">
+                                  <div class="form-group">
+                                    <label>Tiêu đề</label>
+                                    <input
+                                      type="text"
+                                      path="title"
+                                      class="form-control"
+                                      id="title"
+                                    />
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Icon</label>
+                                    <input
+                                      type="text"
+                                      path="icon"
+                                      class="form-control"
+                                      id="icon"
+                                    />
+                                  </div>
+                                  <div class="form-group mt-3">
+                                    <button
+                                      type="button"
+                                      class="btn btn-primary m-b-0"
+                                      onclick="updateCategory()"
+                                    >
+                                      Lưu lại
+                                    </button>
+                                    <a
+                                      href="#"
+                                      class="btn btn-secondary text-white"
+                                      >Quay lại</a
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
                           </div>
                         </div>
                       </div>
@@ -338,6 +345,6 @@
     <!-- Control js -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../assets/js/category/index.js"></script>
+    <script src="../assets/js/category/edit.js"></script>
   </body>
 </html>

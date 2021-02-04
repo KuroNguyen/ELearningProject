@@ -263,6 +263,7 @@
                                       type="text"
                                       path="title"
                                       class="form-control"
+                                      id="title"
                                     />
                                   </div>
                                   <div class="form-group">
@@ -271,12 +272,14 @@
                                       type="text"
                                       path="icon"
                                       class="form-control"
+                                      id="icon"
                                     />
                                   </div>
                                   <div class="form-group mt-3">
                                     <button
-                                      type="submit"
+                                      type="button"
                                       class="btn btn-primary m-b-0"
+                                      onclick="addCategory()"
                                     >
                                       Lưu lại
                                     </button>
@@ -339,5 +342,9 @@
     <script type="text/javascript" src="../assets/js/script.js"></script>
     <script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
     <script src="http://cdn.ckeditor.com/4.4.7/standard-all/adapters/jquery.js"></script>
+    <!-- Control js -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../assets/js/category/add.js"></script>
   </body>
 </html>

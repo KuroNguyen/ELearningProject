@@ -60,6 +60,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/api/admin/auth/login").permitAll()
 				.antMatchers("/api/admin/role**").hasAnyRole("ADMIN")
 				.antMatchers("/api/admin/user**").hasAnyRole("ADMIN","TEACHER")
+				.antMatchers("/api/admin/category**").hasAnyRole("ADMIN","TEACHER")
 				.anyRequest().authenticated();
 		
 		http.addFilter(new AuthFilter(authenticationManager(),userDetailsService));
