@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myclass.dto.CategoryDto;
-import com.myclass.dto.RoleDto;
 import com.myclass.service.CategoryService;
 
 @RestController
