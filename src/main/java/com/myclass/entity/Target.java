@@ -14,12 +14,16 @@ import org.hibernate.annotations.Where;
 
 import com.myclass.core.BaseEntity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "targets")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Where(clause = "active='true'")
 @SQLDelete(sql = "UPDATE users SET active = false WHERE id = ?")
 public class Target extends BaseEntity<String>{
