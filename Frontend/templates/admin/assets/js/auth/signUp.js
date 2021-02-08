@@ -20,6 +20,7 @@ function signUp(){
     else if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email) === false) {
         flag = false;
         document.getElementById('emailErr').innerHTML = 'Email không đúng định dạng!';
+        
     }
     else {
         document.getElementById('emailErr').innerHTML = '';
@@ -29,10 +30,12 @@ function signUp(){
     if (password.length == 0) {
         flag = false;
         document.getElementById('passwordErr').innerHTML = 'Vui lòng nhập mật khẩu!';
+      
     }
     else if (password.length < 6) {
         flag = false;
         document.getElementById('passwordErr').innerHTML = 'Mật khẩu ít nhất 6 ký tự!';
+      
     }
     else {
         document.getElementById('passwordErr').innerHTML = '';
@@ -42,14 +45,19 @@ function signUp(){
     if (confirm.length == 0) {
         flag = false;
         document.getElementById('confirmErr').innerHTML = 'Vui lòng nhập lại mật khẩu!';
+       
     }
     else if (confirm !== password) {
         flag = false;
         document.getElementById('confirmErr').innerHTML = 'Nhập lại mật khẩu không khớp!';
-    }
+        return;
+        console.log("Chạy chưa @@");
+    } 
     else {
         document.getElementById('confirmErr').innerHTML = '';
     }
+
+
 
     if(flag === true){
 
@@ -57,11 +65,12 @@ function signUp(){
             "fullname": fullname,
             "email": email,
             "password": password,
-            "confirm": confirm,
+     
+          
         }
 
         axios({
-            url:'http://localhost:8080/api/admin/user',
+            url:'http://localhost:8080/api/auth/register',
             method: 'POST',
             data: user
 
@@ -69,10 +78,13 @@ function signUp(){
         })
         .then(function(resp){
             console.log('Success');
-            document.location.href = "../../Elearning/index.html";
+            
+            swal("Thành công", "Thêm mới thành công!", "success").then(() => {
+                document.location.href = "../../Elearning/index.html";
+              });
         })
         .then(function(err){
-            console.log(err.response);
+            console.log(err);
             console.log('Thất bại!');
            
         })
