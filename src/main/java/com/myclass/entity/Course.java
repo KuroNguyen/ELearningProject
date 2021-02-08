@@ -20,6 +20,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.myclass.core.BaseEntity;
 
 import lombok.AllArgsConstructor;
@@ -30,6 +33,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "courses")
 @Data
 @NoArgsConstructor
+@Where(clause = "active=true")
+@SQLDelete(sql = "UPDATE users SET active = false WHERE id = ?")
 public class Course extends BaseEntity<String>{
 	
 		@Id
@@ -54,8 +59,8 @@ public class Course extends BaseEntity<String>{
 		private String description;
 		private String content;
 		
-		@Column(name = "category_id")
-		private int categoryId;
+//		@Column(name = "category_id")
+//		private int categoryId;
 			
 		@Column(name = "last_update")
 		private LocalTime lastUpdate;

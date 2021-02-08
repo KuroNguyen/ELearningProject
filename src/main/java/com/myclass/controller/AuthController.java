@@ -31,5 +31,16 @@ public class AuthController {
 		}
 		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 	}
+	
+	@PostMapping("register")
+	public Object register(@Valid @RequestBody LoginDto dto) {
+		try {
+			String token = authService.login(dto);
+			return new ResponseEntity<Object>(token, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+	}
 
 }
