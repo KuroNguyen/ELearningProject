@@ -16,6 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.myclass.core.BaseEntity;
 
 import lombok.Data;
@@ -25,6 +28,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "categories")
 @Data
 @NoArgsConstructor
+@Where(clause = "active=true")
+@SQLDelete(sql = "UPDATE users SET active = false WHERE id = ?")
 public class Category extends BaseEntity<String> {
 
 		@Id
@@ -45,5 +50,5 @@ public class Category extends BaseEntity<String> {
 		@JoinTable(name = "course_category", joinColumns = @JoinColumn(name = "category_id"),
 		inverseJoinColumns = @JoinColumn(name = "course_id"))
 		private List<Course> courses;
-		
+	
 }

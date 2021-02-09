@@ -913,25 +913,30 @@
                         <div class="form-group">
                             <label for="rgName">Name</label>
                             <input type="text" class="form-control" id="rgName">
+                            <span class="text-danger" id="fullnameErr"></span>
+                
                         </div>
                         <div class="form-group">
                             <label for="rgEmail">Email</label>
                             <input type="email" class="form-control" id="rgEmail">
+                            <span class="text-danger" id="emailErr"></span>
                         </div>
                         <div class="form-group">
                             <label for="rgPassword">Password</label>
                             <input type="password" class="form-control" id="rgPassword">
+                            <span class="text-danger" id="passwordErr"></span>
                         </div>
                         <div class="form-group">
                             <label for="rgConfirm">Confirm</label>
                             <input type="password" class="form-control" id="rgConfirm">
+                            <span class="text-danger" id="confirmErr"></span>
                         </div>
                     </form>
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Đăng ký</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="signUp()">Đăng ký</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Thoát</button>
                 </div>
 
@@ -948,6 +953,8 @@
     <script src="./lib/jquery/jquery.slim.min.js"></script>
     <script src="./lib/popper.js/popper.min.js"></script>
     <script src="./lib/bootstrap/bootstrap.min.js"></script>
+    <script src="../admin/assets/js/auth/signUp.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 
 </html>

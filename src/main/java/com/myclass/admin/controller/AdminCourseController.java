@@ -1,4 +1,5 @@
 package com.myclass.admin.controller;
+<<<<<<< HEAD
 
 import javax.validation.Valid;
 
@@ -201,6 +202,28 @@ public class AdminCourseController {
 			return new ResponseEntity<Object>(HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
+=======
+/**
+ * Author: Nguyen Chanh Truc
+ * Created: Feb 4, 2021	
+ */
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("api/admin/course")
+public class AdminCourseController {
+
+	@GetMapping("")
+	public Object index() {
+		try {
+			
+		} catch (Exception e) {
+>>>>>>> 8a920ef59ff9fc96e7a96dbe3bfeeb0035b8686d
 			e.printStackTrace();
 		}
 		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
