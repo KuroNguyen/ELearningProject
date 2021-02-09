@@ -12,5 +12,6 @@ public interface CategoryService {
 	CategoryDto getById(int id);
 	void edit(CategoryDto dto);
 	void delete(int id);
+	boolean checkExistById(int categoryId);
 
 }

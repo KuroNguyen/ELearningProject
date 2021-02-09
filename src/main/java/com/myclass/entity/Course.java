@@ -32,43 +32,50 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Course extends BaseEntity<String>{
 	
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private int id;
-		@Column(nullable = false)
-		private String title;
-		@Column(nullable = false)
-		private String image;
-		@Column(name = "lectures_count", nullable = false)
-		private int lecturesCount;
-		@Column(name = "hour_count", nullable = false)
-		private int hourCount;
-		@Column(name = "view_count")
-		private int viewCount;
-		@Column(precision = 10, scale = 2)
-		private double price;
-		private int discount;
-		@Column(name = "promotion_price")
-		private double promotionPrice;
-		@Column(nullable = false)
-		private String description;
-		private String content;
-		
-		@Column(name = "category_id")
-		private int categoryId;
-			
-		@Column(name = "last_update")
-		private LocalTime lastUpdate;
-			
-		@OneToMany(mappedBy = "course")
-		private List<UserCourses> userCourses;
+	public Course(int i, String title2, String string, int lecturesCount2, int j, int k, float price2, int discount2,
+			float promotionPrice2, String description2, String content2, int categoryId2, Date date) {
+		// TODO Auto-generated constructor stub
+	}
 
-		@ManyToMany(mappedBy = "courses")
-		private List<Category> categories;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(nullable = false)
+	private String title;
+	@Column(nullable = false)
+	private String image;
+	@Column(name = "lectures_count", nullable = false)
+	private int lecturesCount;
+	@Column(name = "hour_count", nullable = false)
+	private int hourCount;
+	@Column(name = "view_count")
+	private int viewCount;
+	@Column(precision = 10, scale = 2)
+	private double price;
+	private int discount;
+	@Column(name = "promotion_price")
+	private double promotionPrice;
+	@Column(nullable = false)
+	private String description;
+	private String content;
+	
+	@Column(name = "category_id")
+	private int categoryId;
 		
-		@OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
-		private List<Target> targets;
+	@Column(name = "last_update")
+	private LocalTime lastUpdate;
 		
-		@OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
-		private List<Video> videos;
+	@OneToMany(mappedBy = "course")
+	private List<UserCourses> userCourses;
+
+	@ManyToMany(mappedBy = "courses")
+	private List<Category> categories;
+	
+	@OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
+	private List<Target> targets;
+	
+	@OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
+	private List<Video> videos;
+
+	
 }

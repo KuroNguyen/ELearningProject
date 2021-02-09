@@ -40,4 +40,10 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	@Override
+	public boolean checkExistById(int userId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
