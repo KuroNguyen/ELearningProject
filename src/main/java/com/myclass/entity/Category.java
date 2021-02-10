@@ -40,15 +40,15 @@ public class Category extends BaseEntity<String> {
 		@Column(nullable = false)
 		private String icon;
 		
-//		@OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
-//		private List<Courses> courses;
-		
-		@ManyToMany(cascade = {
-				CascadeType.PERSIST,
-				CascadeType.MERGE
-		})
-		@JoinTable(name = "course_category", joinColumns = @JoinColumn(name = "category_id"),
-		inverseJoinColumns = @JoinColumn(name = "course_id"))
+		@OneToMany(mappedBy = "category",fetch = FetchType.LAZY)
 		private List<Course> courses;
+		
+//		@ManyToMany(cascade = {
+//				CascadeType.PERSIST,
+//				CascadeType.MERGE
+//		})
+//		@JoinTable(name = "course_category", joinColumns = @JoinColumn(name = "category_id"),
+//		inverseJoinColumns = @JoinColumn(name = "course_id"))
+//		private List<Course> courses;
 	
 }

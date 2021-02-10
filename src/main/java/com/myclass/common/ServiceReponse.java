@@ -1,4 +1,4 @@
-package com.myclass.dto;
+package com.myclass.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MenuCourseDto {
-	private int id;
-	private String title;
-	private int categoryId;
+public class ServiceReponse {
+	private int status;
+	private Object data;
 }

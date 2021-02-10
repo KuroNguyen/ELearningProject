@@ -6,12 +6,17 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
 public class AddCourseDto {
-	
 	//title phải là chữ và từ 4 tới 50 ký tự
 	@Pattern(regexp = "^[a-zA-Z ]+{4,50}$", message = "Title must is words and contain from 4 to 50 characters.")
 	private String title;
-	private int leturesCount;
+	private String image;
+	private int lecturesCount;
+	private int hourCount;
 	private float price;
 	private int discount;
 	private float promotionPrice;
@@ -29,52 +34,4 @@ public class AddCourseDto {
 	// categoryId phải bắt đầu từ 1
 	@Min(value = 1,message = "Category id must be larger than 0")
 	private int categoryId;
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public int getLecturesCount() {
-		return leturesCount;
-	}
-	public void setLecturesCount(int leturesCount) {
-		this.leturesCount = leturesCount;
-	}
-	public float getPrice() {
-		return price;
-	}
-	public void setPrice(float price) {
-		this.price = price;
-	}
-	public int getDiscount() {
-		return discount;
-	}
-	public void setDiscount(int discount) {
-		this.discount = discount;
-	}
-	public float getPromotionPrice() {
-		return promotionPrice;
-	}
-	public void setPromotionPrice(float promotionPrice) {
-		this.promotionPrice = promotionPrice;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public int getCategoryId() {
-		return categoryId;
-	}
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
 }

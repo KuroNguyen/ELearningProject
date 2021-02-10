@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService{
 	private UserRepository userRepository;
 	private RoleRepository roleRepository; 
 	
-	public UserServiceImpl(UserRepository userRepository) {
+	public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
 		this.userRepository = userRepository;
 		this.roleRepository = roleRepository;
 	}
@@ -99,17 +99,11 @@ public class UserServiceImpl implements UserService{
 		return dto;
 	}
 
-<<<<<<< HEAD
 	@Override
 	public boolean checkExistById(int userId) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-=======
 
-
-
-
->>>>>>> 8a920ef59ff9fc96e7a96dbe3bfeeb0035b8686d
 
 }

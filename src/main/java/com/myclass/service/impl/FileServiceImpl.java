@@ -19,6 +19,17 @@ public class FileServiceImpl implements FileService {
 	
 	@Value("${file.upload-dir}")
 	private String uploadDir;
+	
+	@Value("${context-path}")
+	private String contextPath;
+
+	@Value("${dir-course}")
+	private String course;
+
+	@Value("${dir-user}")
+	private String user;
+	
+	private final String userDirectory = Paths.get("").toAbsolutePath().toString();
 
 	@Override
 	public String saveFile(MultipartFile file) {
@@ -34,6 +45,51 @@ public class FileServiceImpl implements FileService {
 			e.printStackTrace();
 		}
 		return "";
+	}
+
+	@Override
+	public String upload(MultipartFile file, String uploadDir) {
+		try {
+			String fileName = file.getOriginalFilename();
+
+			Path path = Paths.get(userDirectory + uploadDir + fileName);
+
+			if (uploadDir.endsWith(course) || uploadDir.endsWith(user)) {
+				path = Paths.get(userDirectory + uploadDir + "/" + fileName);
+			}
+
+			Files.write(path, file.getBytes());
+
+			if (uploadDir.endsWith(course))
+				return contextPath + course + "/" + fileName;
+
+			if (uploadDir.endsWith(user))
+				return contextPath + user + "/" + fileName;
+
+			return contextPath + fileName;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public Boolean deleteIfExists(String imageName, String uploadDir) {
+		try {
+			Path path = Paths.get(userDirectory + uploadDir + imageName);
+
+			if (uploadDir.endsWith(course) || uploadDir.endsWith(user)) {
+				path = Paths.get(userDirectory + uploadDir + "/" + imageName);
+			}
+
+			return Files.deleteIfExists(path);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

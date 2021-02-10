@@ -1,5 +1,4 @@
 package com.myclass.admin.controller;
-<<<<<<< HEAD
 
 import javax.validation.Valid;
 
@@ -20,12 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.myclass.dto.AddCourseDto;
-import com.myclass.dto.EditCourseDto;
+import com.myclass.dto.CourseDto;
 import com.myclass.service.CategoryService;
 import com.myclass.service.CourseService;
 import com.myclass.service.FileService;
 @RestController
-@RequestMapping("/api/admin/course")
+@RequestMapping("api/admin/course")
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class AdminCourseController {
 	private CourseService courseService;
@@ -106,7 +105,7 @@ public class AdminCourseController {
 	}
 
 	@PutMapping("{id}")
-	public Object put(@Valid @RequestBody EditCourseDto entity, @PathVariable int id) {
+	public Object put(@Valid @RequestBody CourseDto entity, @PathVariable int id) {
 		try {
 			// check xem id gửi lên và id trong course có trùng hay không
 			if (id != entity.getId())
@@ -202,29 +201,6 @@ public class AdminCourseController {
 			return new ResponseEntity<Object>(HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
-=======
-/**
- * Author: Nguyen Chanh Truc
- * Created: Feb 4, 2021	
- */
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-@RequestMapping("api/admin/course")
-public class AdminCourseController {
-
-	@GetMapping("")
-	public Object index() {
-		try {
-			
-		} catch (Exception e) {
->>>>>>> 8a920ef59ff9fc96e7a96dbe3bfeeb0035b8686d
-			e.printStackTrace();
 		}
 		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 	}
