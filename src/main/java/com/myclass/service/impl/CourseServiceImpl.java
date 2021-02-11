@@ -128,8 +128,8 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public boolean checkExistById(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		// kiểm tra xem course id có tồn tại dưới database chưa
+		return courseRepository.findById(id).isPresent();
 	}
 
 	@Override

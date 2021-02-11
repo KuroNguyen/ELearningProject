@@ -11,6 +11,7 @@ import com.myclass.dto.TargetDto;
 public interface TargetService {
 	void save(TargetDto dto);
 	List<TargetDto> getAll();
+	List<TargetDto> getAllByCourseId(int id);
 	TargetDto getById(int id);
 	void edit(TargetDto dto);
 	void delete(int id);

@@ -23,7 +23,8 @@ import com.myclass.core.BaseEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @Where(clause = "active=true")

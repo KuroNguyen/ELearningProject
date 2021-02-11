@@ -80,4 +80,9 @@ public class TargetServiceImpl implements TargetService{
 				.build();
 		return dto;
 	}
+
+	@Override
+	public List<TargetDto> getAllByCourseId(int id) {
+		return targetRepository.findAllByCourseId(id);
+	}
 }

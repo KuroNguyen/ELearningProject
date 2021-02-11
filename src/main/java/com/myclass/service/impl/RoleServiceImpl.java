@@ -13,10 +13,9 @@ import com.myclass.service.RoleService;
 @Service
 public class RoleServiceImpl implements RoleService{
 
-	private RoleRepository roleRepository;
-	
+	// Inject RoleRepository
+	private RoleRepository roleRepository;	
 	public RoleServiceImpl(RoleRepository roleRepository) {
-		super();
 		this.roleRepository = roleRepository;
 	}
 
@@ -75,5 +74,12 @@ public class RoleServiceImpl implements RoleService{
 		dto.setName(role.getName());
 		dto.setDescription(role.getDescription());
 		return dto;
+	}
+
+	@Override
+	public Boolean isRoleNameExist(String roleName) {
+		if (roleRepository.findByName(roleName) == null)
+			return false;
+		return true;
 	}
 }

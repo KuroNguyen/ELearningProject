@@ -13,8 +13,12 @@ import com.myclass.entity.Course;
 import com.myclass.service.CategoryService;
 import com.myclass.service.CourseService;
 
+/**
+ * Author: Nguyen Chanh Truc
+ * Created: Feb 10, 2021	
+ */
 @RestController
-@RequestMapping("/api/course")
+@RequestMapping("api/course")
 public class CourseController {
 	private CourseService courseService;
 	private CategoryService categoryService;

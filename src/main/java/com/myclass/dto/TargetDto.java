@@ -15,6 +15,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TargetDto {
 	private int id;
-	private int courseId;
 	private String title;
+	private int courseId;
 }
