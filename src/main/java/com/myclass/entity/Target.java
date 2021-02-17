@@ -26,8 +26,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Where(clause = "active='true'")
-@SQLDelete(sql = "UPDATE users SET active = false WHERE id = ?")
+@Where(clause = "active=true")
+@SQLDelete(sql = "UPDATE targets SET active = false WHERE id = ?")
 public class Target extends BaseEntity<String>{
 
 		@Id

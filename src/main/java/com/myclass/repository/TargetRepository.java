@@ -13,9 +13,9 @@ import com.myclass.entity.Target;
  * Created: Feb 7, 2021	
  */
 public interface TargetRepository extends JpaRepository<Target, Integer>{
-	@Query("SELECT new com.myclass.dto.TargetDto(t.id, t.title, t.courseId) FROM Target t")
+	@Query("SELECT new com.myclass.dto.TargetDto(t.id, t.title, t.courseId, c.title) FROM Target t LEFT JOIN Course c ON t.courseId = c.id")
 	public List<TargetDto> findAllDto();
 	
-	@Query("SELECT new com.myclass.dto.TargetDto(t.id, t.title, t.courseId) FROM Target t WHERE t.id = :id")
+	@Query("SELECT new com.myclass.dto.TargetDto(t.id, t.title, t.courseId, c.title) FROM Target t LEFT JOIN Course c ON t.courseId = c.id WHERE t.id = :id")
 	public List<TargetDto> findAllByCourseId(int id);
 }

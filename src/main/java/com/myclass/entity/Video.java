@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Where(clause = "active=true")
-@SQLDelete(sql = "UPDATE users SET active = false WHERE id = ?")
+@SQLDelete(sql = "UPDATE videos SET active = false WHERE id = ?")
 public class Video extends BaseEntity<String> {
 	
 	@Id

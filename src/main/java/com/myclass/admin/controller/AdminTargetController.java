@@ -24,8 +24,8 @@ import com.myclass.service.TargetService;
 @RequestMapping("api/admin/target")
 public class AdminTargetController {
 	
+	// Inject TargetService
 	private TargetService targetService;
-	
 	public AdminTargetController(TargetService targetService) {
 		this.targetService = targetService;
 	}
@@ -33,6 +33,7 @@ public class AdminTargetController {
 	@GetMapping("")
 	public Object get() {
 		try {
+			// Get all TargetDtos
 			List<TargetDto> dtos = targetService.getAll();
 			return new ResponseEntity<Object>(dtos, HttpStatus.OK);
 		} catch (Exception e) {
@@ -44,12 +45,14 @@ public class AdminTargetController {
 	@GetMapping("{id}")
 	public Object get(@PathVariable int id) {
 		try {
+			// Get TargetDto by Id
 			TargetDto dto = targetService.getById(id);
 			return new ResponseEntity<Object>(dto, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+		
 	}
 	
 	@PostMapping("")
@@ -59,8 +62,9 @@ public class AdminTargetController {
 			return new ResponseEntity<Object>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+		
 	}
 	
 	@PutMapping("{id}")
@@ -68,15 +72,15 @@ public class AdminTargetController {
 		try {
 			if(id != dto.getId()) {
 				return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-			}
-			
+			}		
 			targetService.edit(dto);
 			return new ResponseEntity<Object>(HttpStatus.OK);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+		
 	}
 
 	@DeleteMapping("{id}")
@@ -87,7 +91,8 @@ public class AdminTargetController {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+		
 	}
 }

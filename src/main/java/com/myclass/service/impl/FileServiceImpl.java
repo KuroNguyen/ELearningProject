@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,8 +38,17 @@ public class FileServiceImpl implements FileService {
 		try {
 			// Get fileName
 			String fileName = file.getOriginalFilename();
+			// Get valid user from email. Ex: admin@gmail.com -> admin
+			String userEmail;
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			if (principal instanceof UserDetails) {
+				userEmail = ((UserDetails) principal).getUsername();
+				userEmail = userEmail.split("@")[0];
+			} else {
+				userEmail = "user";
+			}		
 			// Store file to folder
-			Path filePath = Paths.get(uploadDir + fileName);
+			Path filePath = Paths.get(uploadDir + userEmail + "/" + fileName);
 			Files.write(filePath, file.getBytes());
 			
 			return fileName;

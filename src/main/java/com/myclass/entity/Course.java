@@ -34,7 +34,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Where(clause = "active=true")
-@SQLDelete(sql = "UPDATE users SET active = false WHERE id = ?")
+@SQLDelete(sql = "UPDATE courses SET active = false WHERE id = ?")
 public class Course extends BaseEntity<String>{
 
 	@Id

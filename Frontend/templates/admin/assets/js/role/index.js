@@ -3,7 +3,7 @@ const loadRoles = () => {
   let tbodyRole = document.getElementById("tbodyRole");
   // Get token from localStorage
   let token = localStorage.getItem("USER_TOKEN");
-  // Retrieve roles by call api
+  // Retrieve roles by calling api
   axios({
     url: "http://localhost:8080/api/admin/role",
     method: "GET",

@@ -18,7 +18,7 @@ import com.myclass.core.BaseEntity;
 @Entity
 @Table(name = "user_courses")
 @Where(clause = "active=true")
-@SQLDelete(sql = "UPDATE users SET active = false WHERE id = ?")
+@SQLDelete(sql = "UPDATE user_courses SET active = false WHERE id = ?")
 public class UserCourses extends BaseEntity<String> implements Serializable {
 	
 	@Id

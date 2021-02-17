@@ -20,7 +20,6 @@ public class TargetServiceImpl implements TargetService{
 	
 	// Inject target repository
 	private TargetRepository targetRepository;
-	
 	public TargetServiceImpl(TargetRepository targetRepository) {
 		this.targetRepository = targetRepository;
 	}
@@ -40,11 +39,15 @@ public class TargetServiceImpl implements TargetService{
 	@Override
 	public List<TargetDto> getAll() {
 		// Get all entities
-		List<Target> entities = targetRepository.findAll();
-		// Convert from entities to dtos and return
-		return entities.stream()
-			.map(entity -> convertEntityToDto(entity))
-			.collect(Collectors.toList());
+//		List<Target> entities = targetRepository.findAll();
+//		for (Target target : entities) {
+//			System.out.println(target.toString());
+//		}
+//		// Convert from entities to dtos and return
+//		return entities.stream()
+//			.map(entity -> convertEntityToDto(entity))
+//			.collect(Collectors.toList());
+		return targetRepository.findAllDto();
 	}
 
 	@Override
