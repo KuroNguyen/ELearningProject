@@ -35,7 +35,7 @@ public class SwaggerConfig {
 	        (springfox.documentation.service.Parameter) new ParameterBuilder()
 		    .name("Authorization") // name of the header
 		    .modelRef(new ModelRef("string")) // data-type of the header
-		    .required(true) // required/optional
+		    .required(false) // required/optional
 		    .parameterType("header") // for query-param, this value can be 'query'
 		    .description("Basic Auth Token")
 		    .build();

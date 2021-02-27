@@ -2,6 +2,8 @@ package com.myclass.admin.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.myclass.dto.LoginDto;
 import com.myclass.dto.UserDto;
+import com.myclass.service.AuthService;
 import com.myclass.service.UserService;
 
 @RestController
@@ -23,10 +27,14 @@ import com.myclass.service.UserService;
 public class AdminUserController {
 	
 	private UserService userService;
+
 	
 	public AdminUserController(UserService userService) {
 		this.userService = userService;
+	
 	}
+	
+	
 
 	@GetMapping("")
 	public Object get() {

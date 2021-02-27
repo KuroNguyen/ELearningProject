@@ -9,6 +9,7 @@ const loadData = () => {
     .then(function (response) {
       let users = response.data;
       users.forEach((user) => {
+     
         content += `
                     <tr>
                         <td>${user.id}</td>

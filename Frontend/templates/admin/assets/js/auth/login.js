@@ -25,7 +25,7 @@ const login = () => {
       document.location.href = "../role/role-index.html";
     })
     .catch((error) => {
-      console.log(err.response.data);
+      console.log({...error});
     });
 };
 

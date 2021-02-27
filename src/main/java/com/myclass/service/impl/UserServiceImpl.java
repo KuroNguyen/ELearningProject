@@ -37,8 +37,9 @@ public class UserServiceImpl implements UserService{
 			UserDto dto = new UserDto(
 					entity.getId(),
 					entity.getEmail(),
-					entity.getPassword(),
 					entity.getFullname(),
+					entity.getPassword(),
+					
 					entity.getRoleId()
 				);
 			dto.setRoleDesc(role.getDescription());
@@ -58,7 +59,7 @@ public class UserServiceImpl implements UserService{
 		entity.setPassword(hashed);
 		entity.setFullname(dto.getFullname());
 		entity.setAvatar(dto.getAvatar());
-		entity.setRoleId(dto.getRoleId());
+		entity.setRoleId(2);
 		
 		userRepository.save(entity);
 	}
