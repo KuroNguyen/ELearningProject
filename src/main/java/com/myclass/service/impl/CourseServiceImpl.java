@@ -31,10 +31,8 @@ import com.myclass.service.CourseService;
 public class CourseServiceImpl implements CourseService {
 	// Inject CourseRepository
 	private CourseRepository courseRepository;
-
 	private UserCourseRepository userCourseRepository;
 	private UserRepository userRepository;
-	
 
 	public CourseServiceImpl(UserCourseRepository userCourseRepository, UserRepository userRepository,
 			CourseRepository courseRepository) {
@@ -181,6 +179,8 @@ public class CourseServiceImpl implements CourseService {
 		course.setImage(image);
 		courseRepository.save(course);
 	}
+
+
 	public void addCourse(AddUserCourseDto dto) {
 		User user = userRepository.findById(dto.getUserId()).get();
 		Course course = courseRepository.findById(dto.getCourseId()).get();
