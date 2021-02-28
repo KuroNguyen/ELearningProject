@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.myclass.dto.AddCourseDto;
-<<<<<<< HEAD
 import com.myclass.dto.AddUserCourseDto;
 import com.myclass.dto.CourseDto;
 import com.myclass.dto.MenuCourseDto;
@@ -25,12 +24,6 @@ import com.myclass.entity.UserCourses;
 import com.myclass.repository.CourseRepository;
 import com.myclass.repository.UserCourseRepository;
 import com.myclass.repository.UserRepository;
-=======
-import com.myclass.dto.CourseDto;
-import com.myclass.dto.MenuCourseDto;
-import com.myclass.entity.Course;
-import com.myclass.repository.CourseRepository;
->>>>>>> 268f890b983c47dab7035bf8426985b9668a65df
 import com.myclass.service.CourseService;
 
 @Service
@@ -38,18 +31,13 @@ import com.myclass.service.CourseService;
 public class CourseServiceImpl implements CourseService {
 	// Inject CourseRepository
 	private CourseRepository courseRepository;
-<<<<<<< HEAD
 	private UserCourseRepository userCourseRepository;
 	private UserRepository userRepository;
-	
+
 	public CourseServiceImpl(UserCourseRepository userCourseRepository, UserRepository userRepository,
 			CourseRepository courseRepository) {
 		this.userCourseRepository = userCourseRepository;
 		this.userRepository = userRepository;
-=======
-
-	public CourseServiceImpl(CourseRepository courseRepository) {
->>>>>>> 268f890b983c47dab7035bf8426985b9668a65df
 		this.courseRepository = courseRepository;
 	}
 
@@ -191,8 +179,7 @@ public class CourseServiceImpl implements CourseService {
 		course.setImage(image);
 		courseRepository.save(course);
 	}
-<<<<<<< HEAD
-	
+
 
 	public void addCourse(AddUserCourseDto dto) {
 		User user = userRepository.findById(dto.getUserId()).get();
@@ -243,7 +230,5 @@ public class CourseServiceImpl implements CourseService {
 		UserCourseKey key = new UserCourseKey(dto.getUserId(),dto.getCourseId());
 		return userCourseRepository.findById(key).isPresent();
 	}
-=======
->>>>>>> 268f890b983c47dab7035bf8426985b9668a65df
 
 }

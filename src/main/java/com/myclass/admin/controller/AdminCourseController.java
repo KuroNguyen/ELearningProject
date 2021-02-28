@@ -192,7 +192,7 @@ public class AdminCourseController {
 
 			if ("".equals(imageName))
 				return new ResponseEntity<Object>(imageIsNotExist, HttpStatus.BAD_REQUEST);
-			
+
 			if (fileService.deleteIfExists(imageName, uploadDir))
 				courseService.editImageById(id, "");
 			else
