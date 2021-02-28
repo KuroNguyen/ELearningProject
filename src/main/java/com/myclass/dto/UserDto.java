@@ -19,4 +19,32 @@ public class UserDto {
 	private String address;
 	private int roleId;
 	private String roleDesc;
+	private boolean kiemTraEmail;
+	
+	public UserDto(int id, String email, String fullname, String password, String avatar, String phone, String address,
+			int roleId) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.fullname = fullname;
+		this.password = password;
+		this.avatar = avatar;
+		this.phone = phone;
+		this.address = address;
+		this.roleId = roleId;
+	}
+	
+	public UserDto(int id, String email, String fullname, String password,
+			int roleId) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.fullname = fullname;
+		this.password = password;
+		this.roleId = roleId;
+	}
+	
+	
+	
+	
 }

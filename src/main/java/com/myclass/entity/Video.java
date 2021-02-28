@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.myclass.core.BaseEntity;
 
 import lombok.Data;
@@ -19,6 +22,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "videos")
 @Data
 @NoArgsConstructor
+@Where(clause = "active=true")
+@SQLDelete(sql = "UPDATE videos SET active = false WHERE id = ?")
 public class Video extends BaseEntity<String> {
 	
 	@Id

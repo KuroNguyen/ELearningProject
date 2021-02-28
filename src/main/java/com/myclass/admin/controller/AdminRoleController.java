@@ -2,6 +2,7 @@ package com.myclass.admin.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,9 +22,12 @@ import com.myclass.service.RoleService;
 @RequestMapping("api/admin/role")
 @CrossOrigin("*")
 public class AdminRoleController {
-
-	private RoleService roleService;
+	// Init message
+	@Value("${message.roleNameExist}")
+	private String roleNameExist;
 	
+	// Inject RoleService
+	private RoleService roleService;
 	public AdminRoleController(RoleService roleService) {
 		this.roleService = roleService;
 	}
@@ -55,6 +59,9 @@ public class AdminRoleController {
 	@PostMapping("")
 	public Object post(@RequestBody RoleDto role) {
 		try {
+			// Check existence for roleName
+			if (roleService.isRoleNameExist(role.getName())) 
+				return new ResponseEntity<Object>(roleNameExist, HttpStatus.BAD_REQUEST);
 			roleService.save(role);
 			return new ResponseEntity<Object>(HttpStatus.CREATED);
 		} catch (Exception e) {

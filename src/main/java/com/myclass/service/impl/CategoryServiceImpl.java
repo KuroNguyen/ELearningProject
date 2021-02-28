@@ -72,4 +72,10 @@ public class CategoryServiceImpl implements CategoryService{
 		dto.setIcon(category.getIcon());
 		return dto;
 	}
+
+	@Override
+	public boolean checkExistById(int id) {
+		// kiểm tra id có tồn tại dưới database chưa
+		return categoryRepository.findById(id).isPresent();
+	}
 }

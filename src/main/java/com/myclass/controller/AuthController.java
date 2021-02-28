@@ -10,15 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myclass.dto.LoginDto;
+import com.myclass.dto.UserDto;
 import com.myclass.service.AuthService;
+import com.myclass.service.UserService;
 
 @RestController
 @RequestMapping("api/auth")
 public class AuthController {
 	private AuthService authService;
+	private UserService userService;
 
-	public AuthController(AuthService authService) {
+	public AuthController(AuthService authService, UserService userService) {
 		this.authService = authService;
+		this.userService = userService;
 	}
 
 	@PostMapping("login")
@@ -26,6 +30,17 @@ public class AuthController {
 		try {
 			String token = authService.login(dto);
 			return new ResponseEntity<Object>(token, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+	}
+	
+	@PostMapping("register")
+	public Object register(@Valid @RequestBody UserDto dto) {
+		try {
+			userService.insert(dto);
+			return new ResponseEntity<Object>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

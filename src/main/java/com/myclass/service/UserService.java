@@ -10,4 +10,5 @@ public interface UserService {
 	UserDto getById(int id);
 	void edit(UserDto dto);
 	void delete(int id);
+	boolean checkExistById(int userId);
 }

@@ -35,10 +35,21 @@ public class AuthFilter extends BasicAuthenticationFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		
+		if(request.getServletPath().startsWith("/api/admin/user")) {
+			chain.doFilter(request, response);
+			return;
+		}
+		
+		if(request.getServletPath().startsWith("/api/auth/register")) {
+			chain.doFilter(request, response);
+			return;
+		}
+		
 		// Get token from request
 		String tokenHeader = request.getHeader("Authorization");
 		if (tokenHeader == null || tokenHeader.isEmpty() || !tokenHeader.startsWith("Bearer ")) {
 			response.sendError(401, "Chưa đăng nhập");
+			
 			return;
 		}
 		// Decrypt token to get email
