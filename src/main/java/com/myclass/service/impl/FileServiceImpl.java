@@ -38,6 +38,8 @@ public class FileServiceImpl implements FileService {
 		try {
 			// Get fileName
 			String fileName = file.getOriginalFilename();
+			// Get project directory
+			String projectDirectory = Paths.get("").toAbsolutePath().toString();
 			// Get valid user from email. Ex: admin@gmail.com -> admin
 			String userEmail;
 			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -47,11 +49,16 @@ public class FileServiceImpl implements FileService {
 			} else {
 				userEmail = "user";
 			}		
+			// Check if userEmail folder exist or not
+			Path folderPath = Paths.get(projectDirectory + uploadDir + userEmail);
+			if (!Files.exists(folderPath)) {
+				Files.createDirectories(folderPath);
+			}
 			// Store file to folder
-			Path filePath = Paths.get(uploadDir + userEmail + "/" + fileName);
+			Path filePath = Paths.get(projectDirectory + uploadDir + userEmail + "/" + fileName);
 			Files.write(filePath, file.getBytes());
 			
-			return fileName;
+			return userEmail + "/" + fileName;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

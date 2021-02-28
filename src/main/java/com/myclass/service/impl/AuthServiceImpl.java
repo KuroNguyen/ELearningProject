@@ -7,6 +7,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Service;
 
 import com.myclass.dto.LoginDto;
+import com.myclass.dto.UserLoginResponseDto;
+import com.myclass.entity.User;
+import com.myclass.repository.UserRepository;
 import com.myclass.service.AuthService;
 
 import io.jsonwebtoken.Jwts;
@@ -20,9 +23,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class AuthServiceImpl implements AuthService {
 	
 	AuthenticationManager authenticationManager;
+	UserRepository userRepository;
 	
-	public AuthServiceImpl(AuthenticationManager authenticationManager) {
+	public AuthServiceImpl(AuthenticationManager authenticationManager, UserRepository userRepository) {
 		this.authenticationManager = authenticationManager;
+		this.userRepository = userRepository;
 	}
 
 	@Override
@@ -40,6 +45,31 @@ public class AuthServiceImpl implements AuthService {
 				.compact();
 		
 		return token;
+	}
+
+	@Override
+	public UserLoginResponseDto userLogin(LoginDto loginDto) {
+		authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()));
+		
+		// Create token
+		Date now = new Date();
+		String token = Jwts.builder()
+				.setSubject(loginDto.getEmail())
+				.setIssuedAt(now)
+				.setExpiration(new Date(now.getTime() + 86400000L))
+				.signWith(SignatureAlgorithm.HS512, "ABC_EGH")
+				.compact();
+		
+		// Get user information
+		User entity = userRepository.findByEmail(loginDto.getEmail());
+		// Convert entity to dto
+		UserLoginResponseDto dto = new UserLoginResponseDto();
+		dto.setToken(token);
+		dto.setUserId(entity.getId());
+		dto.setUserName(entity.getFullname());
+		
+		return dto;
 	}
 
 }

@@ -58,6 +58,7 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable() // turn of fraudulent prevention
 			.antMatcher("/api/admin/**").authorizeRequests()
 				.antMatchers("/api/admin/auth/login").permitAll()
+				.antMatchers("/api/auth/login").permitAll()
 				.antMatchers("/api/admin/role**").hasAnyRole("ADMIN")
 				.antMatchers("/api/admin/user**").hasAnyRole("ADMIN","TEACHER")
 				.antMatchers("/api/admin/category**").hasAnyRole("ADMIN","TEACHER")

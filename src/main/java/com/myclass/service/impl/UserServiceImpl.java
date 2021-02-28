@@ -105,5 +105,19 @@ public class UserServiceImpl implements UserService{
 		return false;
 	}
 
+	@Override
+	public UserDto getByEmail(String email) {
+		User entity = userRepository.findByEmail(email);
+		UserDto dto = new UserDto(
+				entity.getId(),
+				entity.getEmail(),
+				entity.getPassword(),
+				entity.getFullname(),
+				entity.getAvatar(),
+				entity.getPhone(), entity.getAddress(), entity.getRoleId()
+			);
+		return dto;
+	}
+
 
 }

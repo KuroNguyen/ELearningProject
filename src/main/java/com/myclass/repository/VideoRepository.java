@@ -16,6 +16,6 @@ public interface VideoRepository extends JpaRepository<Video, Integer>{
 	
 	List<Video> findAllByTitle(String title);
 	
-	@Query("SELECT new com.myclass.dto.VideoDto(v.id, v.title, v.url, v.timeCount, v.courseId) FROM Video v")
+	@Query("SELECT new com.myclass.dto.VideoDto(v.id, v.title, v.url, v.timeCount, v.courseId, c.title) FROM Video v LEFT JOIN Course c ON v.courseId = c.id")
 	List<VideoDto> findAllJoin();
 }

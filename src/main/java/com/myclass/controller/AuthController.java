@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.myclass.dto.LoginDto;
 import com.myclass.dto.UserDto;
+import com.myclass.dto.UserLoginResponseDto;
 import com.myclass.service.AuthService;
 import com.myclass.service.UserService;
 
@@ -28,8 +29,9 @@ public class AuthController {
 	@PostMapping("login")
 	public Object post(@Valid @RequestBody LoginDto dto) {
 		try {
-			String token = authService.login(dto);
-			return new ResponseEntity<Object>(token, HttpStatus.OK);
+			UserLoginResponseDto userLoginResponseDto = authService.userLogin(dto);
+			// Return user information and token 			
+			return new ResponseEntity<Object>(userLoginResponseDto, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

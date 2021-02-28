@@ -35,8 +35,8 @@ public class AdminRoleController {
 	@GetMapping("")
 	public Object get() {
 		try {
-			List<RoleDto> entities = roleService.getAll();
-			return new ResponseEntity<Object>(entities, HttpStatus.OK);
+			List<RoleDto> dtos = roleService.getAll();
+			return new ResponseEntity<Object>(dtos, HttpStatus.OK);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
