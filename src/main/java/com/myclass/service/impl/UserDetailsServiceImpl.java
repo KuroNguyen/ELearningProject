@@ -26,7 +26,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		// Get user
-		User user = userRepository.findByEmail(email);
+		System.out.println("maybe run here");
+		User user = userRepository.custom(email);
 		if (user == null) throw new UsernameNotFoundException("Email không tồn tại!");
 		
 		// Get roleName in database

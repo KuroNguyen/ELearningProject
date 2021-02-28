@@ -17,8 +17,9 @@ public class UserDto {
 	private String avatar;
 	private String phone;
 	private String address;
-	private int roleId = 3;
+	private int roleId;
 	private String roleDesc;
+	private boolean kiemTraEmail;
 	
 	public UserDto(int id, String email, String fullname, String password, String avatar, String phone, String address,
 			int roleId) {

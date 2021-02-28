@@ -5,9 +5,18 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+<<<<<<< HEAD
+
 @Embeddable
 public class UserCourseKey implements Serializable{
 
+	
+
+=======
+@Embeddable
+public class UserCourseKey implements Serializable{
+
+>>>>>>> 268f890b983c47dab7035bf8426985b9668a65df
 	@Column(name = "user_id")
 	int userId;
 	
