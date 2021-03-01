@@ -30,7 +30,7 @@ public class AdminFileController {
 			return new ResponseEntity<Object>(fileName, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
+			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 	}
 }

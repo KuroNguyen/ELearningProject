@@ -17,4 +17,5 @@ public class VideoDto {
 	private String url;
 	private int timeCount;
 	private int courseId;
+	private String courseTitle;
 }

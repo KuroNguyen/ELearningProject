@@ -256,36 +256,23 @@
                                       type="text"
                                       name="title"
                                       class="form-control"
+                                      id="title"
                                     />
                                   </div>
                                   <div class="form-group">
-                                    <label>Url</label>
+                                    <label>Video</label>
                                     <span hidden id="videoUrl"></span>
+                                    <video hidden id="videoPlay"></video>
                                     <input
                                       type="file"
                                       name="url"
                                       class="form-control"
                                       id="videoFile"
-                                    />
-                                  </div>
-                                  <div class="form-group">
-                                    <label>Hình đại diện</label>
-                                    <input
-                                      type="text"
-                                      name="image"
-                                      class="form-control"
+                                      onchange="loadVideoDuration()"
                                     />
                                   </div>
                                 </div>
                                 <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label>Thời lượng (phút)</label>
-                                    <input
-                                      type="number"
-                                      name="timeCount"
-                                      class="form-control"
-                                    />
-                                  </div>
                                   <div class="form-group">
                                     <label>Khóa học</label>
                                     <select
@@ -300,12 +287,22 @@
                                       <option value="">Spring Boot</option>
                                     </select>
                                   </div>
+                                  <div class="form-group">
+                                    <label>Thời lượng (phút)</label>
+                                    <input
+                                      type="text"
+                                      name="timeCount"
+                                      class="form-control"
+                                      id="duration"
+                                    />
+                                  </div>
                                 </div>
                                 <div class="col-12">
                                   <div class="form-group mt-3">
                                     <button
-                                      type="submit"
+                                      type="button"
                                       class="btn btn-primary m-b-0"
+                                      onclick="addVideo()"
                                     >
                                       Lưu lại
                                     </button>

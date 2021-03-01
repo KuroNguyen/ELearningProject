@@ -56,29 +56,39 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.cors();
 		
 		http.csrf().disable() // turn of fraudulent prevention
-		.authorizeRequests()
-		
-		.antMatchers("/api/admin/auth/login","/api/admin/user").permitAll()
-		.and()
+//<<<<<<< HEAD
+			.antMatcher("/api/admin/**").authorizeRequests()
+				.antMatchers("/api/admin/auth/login").permitAll()
+				.antMatchers("/api/auth/login").permitAll()
+				.antMatchers("/api/admin/role**").hasAnyRole("ADMIN")
+				.antMatchers("/api/admin/user**").hasAnyRole("ADMIN","TEACHER")
+				.antMatchers("/api/admin/category**").hasAnyRole("ADMIN","TEACHER")
+				.anyRequest().authenticated();
+//=======
 //		.authorizeRequests()
-//		.antMatchers(").permitAll()
+//		
+//		.antMatchers("/api/admin/auth/login","/api/admin/user").permitAll()
 //		.and()
-		.authorizeRequests()
-		.antMatchers("/api/admin/role**").hasAnyRole("ADMIN")
-		.and()
-		.authorizeRequests()
-		.antMatchers("/api/admin/user**").hasAnyRole("ADMIN","TEACHER")
-		.and()
-		.authorizeRequests()
-		.antMatchers("/api/admin/category**").hasAnyRole("ADMIN","TEACHER")
-		.and()
-		.authorizeRequests()
-		.antMatchers("/api/admin/**")
-		.authenticated();
-			
-			
-			
-
+////		.authorizeRequests()
+////		.antMatchers(").permitAll()
+////		.and()
+//		.authorizeRequests()
+//		.antMatchers("/api/admin/role**").hasAnyRole("ADMIN")
+//		.and()
+//		.authorizeRequests()
+//		.antMatchers("/api/admin/user**").hasAnyRole("ADMIN","TEACHER")
+//		.and()
+//		.authorizeRequests()
+//		.antMatchers("/api/admin/category**").hasAnyRole("ADMIN","TEACHER")
+//		.and()
+//		.authorizeRequests()
+//		.antMatchers("/api/admin/**")
+//		.authenticated();
+//			
+//			
+//			
+//
+//>>>>>>> 60b128f213739db9b171fd2aa179ebe271177e63
 		
 		http.addFilter(new AuthFilter(authenticationManager(),userDetailsService));
 		// Not use session
