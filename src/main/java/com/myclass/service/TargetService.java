@@ -13,6 +13,7 @@ public interface TargetService {
 	List<TargetDto> getAll();
 	List<TargetDto> getAllByCourseId(int id);
 	TargetDto getById(int id);
+	Boolean isTargetIdExist(int id);
 	void edit(TargetDto dto);
 	void delete(int id);
 }

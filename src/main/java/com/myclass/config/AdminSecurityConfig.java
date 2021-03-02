@@ -55,35 +55,35 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
 		
-		http.csrf().disable() // turn of fraudulent prevention
+		http.csrf().disable() // turn off fraudulent prevention
 //<<<<<<< HEAD
-			.antMatcher("/api/admin/**").authorizeRequests()
-				.antMatchers("/api/admin/auth/login").permitAll()
-				.antMatchers("/api/auth/login").permitAll()
-				.antMatchers("/api/admin/role**").hasAnyRole("ADMIN")
-				.antMatchers("/api/admin/user**").hasAnyRole("ADMIN","TEACHER")
-				.antMatchers("/api/admin/category**").hasAnyRole("ADMIN","TEACHER")
-				.anyRequest().authenticated();
+			.antMatcher("/api/admin/**")
+//					.authorizeRequests()
+//				.antMatchers("/api/admin/auth/login").permitAll()
+//				.antMatchers("/api/auth/login").permitAll()
+//				.antMatchers("/api/admin/role**").hasAnyRole("ADMIN")
+//				.antMatchers("/api/admin/user**").hasAnyRole("ADMIN","TEACHER")
+//				.antMatchers("/api/admin/category**").hasAnyRole("ADMIN","TEACHER")
+//				.anyRequest().authenticated();
 //=======
+		.authorizeRequests()	
+		.antMatchers("/api/admin/auth/login","/api/admin/user").permitAll()
+		.and()
 //		.authorizeRequests()
-//		
-//		.antMatchers("/api/admin/auth/login","/api/admin/user").permitAll()
+//		.antMatchers(").permitAll()
 //		.and()
-////		.authorizeRequests()
-////		.antMatchers(").permitAll()
-////		.and()
-//		.authorizeRequests()
-//		.antMatchers("/api/admin/role**").hasAnyRole("ADMIN")
-//		.and()
-//		.authorizeRequests()
-//		.antMatchers("/api/admin/user**").hasAnyRole("ADMIN","TEACHER")
-//		.and()
-//		.authorizeRequests()
-//		.antMatchers("/api/admin/category**").hasAnyRole("ADMIN","TEACHER")
-//		.and()
-//		.authorizeRequests()
-//		.antMatchers("/api/admin/**")
-//		.authenticated();
+		.authorizeRequests()
+		.antMatchers("/api/admin/role**").hasAnyRole("ADMIN")
+		.and()
+		.authorizeRequests()
+		.antMatchers("/api/admin/user**").hasAnyRole("ADMIN","TEACHER")
+		.and()
+		.authorizeRequests()
+		.antMatchers("/api/admin/category**").hasAnyRole("ADMIN","TEACHER")
+		.and()
+		.authorizeRequests()
+		.antMatchers("/api/admin/**")
+		.authenticated();
 //			
 //			
 //			

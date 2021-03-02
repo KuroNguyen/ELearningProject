@@ -2,14 +2,18 @@ let tBody = document.getElementById("tbodyUser");
 
 const loadData = () => {
   let content = "";
+  // Get token from localStorage
+  let token = localStorage.getItem("USER_TOKEN");
   axios({
     url: "http://localhost:8080/api/admin/user",
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   })
     .then(function (response) {
       let users = response.data;
       users.forEach((user) => {
-     
         content += `
                     <tr>
                         <td>${user.id}</td>
@@ -27,7 +31,7 @@ const loadData = () => {
       tBody.innerHTML = content;
     })
     .catch(function (error) {
-      console.log(error);
+      console.log({ error });
     });
 };
 

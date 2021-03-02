@@ -29,7 +29,7 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
 		
-		http.csrf().disable() // turn of fraudulent prevention
+		http.csrf().disable() // turn off fraudulent prevention
 			.antMatcher("/api/**").authorizeRequests()
 				.antMatchers("/api/user").authenticated();
 		

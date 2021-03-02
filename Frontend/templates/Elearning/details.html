@@ -136,8 +136,10 @@
     <section class="course-banner">
       <div class="container">
         <div class="banner-content">
-          <h1>Complete Python Bootcamp: Go from zero to hero in Python 3</h1>
-          <h5>
+          <h1 id="courseTitle">
+            Complete Python Bootcamp: Go from zero to hero in Python 3
+          </h1>
+          <h5 id="courseContent">
             Learn Python like a Professional! Start from the basics and go all
             the way to creating your own applications and games!
           </h5>
@@ -147,16 +149,26 @@
               >Lê Quang Song</a
             >
             <span
-              ><i class="fa fa-calendar-check-o mr-1"></i> Last updated
-              04/2019</span
-            >
+              ><i class="fa fa-calendar-check-o mr-1"></i>
+              <span id="courseLastUpdate">Last updated 04/2019</span>
+            </span>
           </h6>
           <h6 class="mt-3">
-            <span><i class="fa fa-play-circle mr-1"></i> 180 lectures</span>
+            <span
+              ><i class="fa fa-play-circle mr-1"></i>
+              <span id="courseLectureCount">180 lectures</span>
+            </span>
             <span class="mx-1"> | </span>
-            <span><i class="fa fa-clock-o mr-1"></i> 40 hours</span>
+            <span
+              ><i class="fa fa-clock-o mr-1"></i>
+              <span id="courseHourCount">40 hours</span>
+            </span>
             <span class="ml-2"
-              >with <b class="mx-1">568,171</b> students enrolled</span
+              >with
+              <b class="mx-1">
+                <span id="courseEnrolledCount">568,171</span>
+              </b>
+              students enrolled</span
             >
           </h6>
         </div>
@@ -170,7 +182,7 @@
             <!-- BEGIN DESC -->
             <div class="course-desc">
               <h4 class="course-desc-title">What you'll learn</h4>
-              <div class="row">
+              <div class="row" id="courseTargets">
                 <div class="col-md-6">
                   <ul class="course-desc-items">
                     <li>
@@ -257,7 +269,7 @@
                   <span><i class="fa fa-minus mr-1"></i> Course list</span>
                   <span>40:28:55</span>
                 </a>
-                <ul id="list-content" class="collapse show">
+                <ul id="list-content" class="collapse show" >
                   <li>
                     <a href="#" class="btn-video" data-video-id="6xB-uXqbOqo">
                       <span>
@@ -474,9 +486,9 @@
           </div>
           <div class="col-md-4">
             <div class="course-buy">
-              <h2 class="mb-4 font-weight-bold">
+              <h2 class="mb-4 font-weight-bold" id="promotionPrice">
                 1.200.000 đ
-                <small>1.600.000 đ</small>
+                <small id="price">1.600.000 đ</small>
               </h2>
               <button class="btn btn-danger w-100">Add to cart</button>
               <button class="btn btn-outline-secondary w-100">Buy now</button>

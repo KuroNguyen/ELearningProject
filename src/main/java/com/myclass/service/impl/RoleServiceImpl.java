@@ -82,4 +82,9 @@ public class RoleServiceImpl implements RoleService{
 			return false;
 		return true;
 	}
+
+	@Override
+	public Boolean isRoleIdExist(int id) {
+		return roleRepository.findById(id).isPresent();
+	}
 }

@@ -28,10 +28,12 @@ import com.myclass.core.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name = "courses")
 @Data
+@ToString
 @NoArgsConstructor
 @Where(clause = "active=true")
 @SQLDelete(sql = "UPDATE courses SET active = false WHERE id = ?")

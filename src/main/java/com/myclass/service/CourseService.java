@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.myclass.dto.AddCourseDto;
+import com.myclass.dto.CourseDetailDto;
 import com.myclass.dto.CourseDto;
 import com.myclass.dto.MenuCourseDto;
 import com.myclass.entity.Course;
@@ -23,6 +24,8 @@ public interface CourseService {
 	void deleteById(int id);
 
 	CourseDto getCourseById(int id);
+
+	CourseDetailDto getCourseDetailsById(int id);
 
 	List<MenuCourseDto> getMenuCourseByCategoryId(int id);
 

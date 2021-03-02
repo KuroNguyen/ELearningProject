@@ -49,7 +49,15 @@ const logout = () => {
   location.reload();
 };
 
-const loadCategory = () => {};
+const loadCategory = () => {
+  axios({
+    url: `http://localhost:8080/api/admin/course/${id}`,
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
 
 // Load navBar function
 const loadNavBar = () => {

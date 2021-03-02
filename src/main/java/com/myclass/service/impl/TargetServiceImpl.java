@@ -88,4 +88,9 @@ public class TargetServiceImpl implements TargetService{
 	public List<TargetDto> getAllByCourseId(int id) {
 		return targetRepository.findAllByCourseId(id);
 	}
+
+	@Override
+	public Boolean isTargetIdExist(int id) {
+		return targetRepository.findById(id).isPresent();
+	}
 }
