@@ -18,10 +18,10 @@ import com.myclass.filter.AuthFilter;
 @Configuration
 @EnableWebSecurity
 @Order(1)
-public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
-	
+public class AdminSecurityConfig extends WebSecurityConfigurerAdapter {
+
 	private UserDetailsService userDetailsService;
-	
+
 	public AdminSecurityConfig(UserDetailsService userDetailsService) {
 		this.userDetailsService = userDetailsService;
 	}
@@ -32,67 +32,36 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService)
-			.passwordEncoder(new BCryptPasswordEncoder());	
+		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 	}
-	
+
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring()
-			.antMatchers("/v2/api-docs",
-					"/configuration/ui",
-					"/swagger-resources/**",
-					"/configuration/security",
-					"/swagger-ui.html",
-					"/webjars/**",
-					"/api/admin/auth/login");
+		web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**",
+				"/configuration/security", "/swagger-ui.html", "/webjars/**", "/api/admin/auth/login");
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
-		
+
 		http.csrf().disable() // turn off fraudulent prevention
-//<<<<<<< HEAD
-			.antMatcher("/api/admin/**")
-//					.authorizeRequests()
-//				.antMatchers("/api/admin/auth/login").permitAll()
-//				.antMatchers("/api/auth/login").permitAll()
-//				.antMatchers("/api/admin/role**").hasAnyRole("ADMIN")
-//				.antMatchers("/api/admin/user**").hasAnyRole("ADMIN","TEACHER")
-//				.antMatchers("/api/admin/category**").hasAnyRole("ADMIN","TEACHER")
-//				.anyRequest().authenticated();
-//=======
-		.authorizeRequests()	
-		.antMatchers("/api/admin/auth/login","/api/admin/user").permitAll()
-		.and()
-//		.authorizeRequests()
-//		.antMatchers(").permitAll()
-//		.and()
-		.authorizeRequests()
-		.antMatchers("/api/admin/role**").hasAnyRole("ADMIN")
-		.and()
-		.authorizeRequests()
-		.antMatchers("/api/admin/user**").hasAnyRole("ADMIN","TEACHER")
-		.and()
-		.authorizeRequests()
-		.antMatchers("/api/admin/category**").hasAnyRole("ADMIN","TEACHER")
-		.and()
-		.authorizeRequests()
-		.antMatchers("/api/admin/**")
-		.authenticated();
-//			
-//			
-//			
-//
-//>>>>>>> 60b128f213739db9b171fd2aa179ebe271177e63
-		
-		http.addFilter(new AuthFilter(authenticationManager(),userDetailsService));
+
+			.antMatcher("/api/admin/**").authorizeRequests() // only apply access control for url start with /api/admin
+			.antMatchers("/api/admin/auth/login").permitAll() 
+			.antMatchers("/api/auth/login").permitAll()
+			.antMatchers("/api/admin/role**").hasAnyRole("ADMIN")
+			.antMatchers("/api/admin/category**").hasAnyRole("ADMIN", "TEACHER")
+			.antMatchers("/api/admin/human**").hasAnyRole("ADMIN", "TEACHER")
+			.antMatchers("/api/admin/user**").hasAnyAuthority("ROLE_ADMIN","ROLE_USER")
+			.anyRequest().authenticated();
+
+		http.addFilter(new AuthFilter(authenticationManager(), userDetailsService));
 		// Not use session
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
-	
+
 }

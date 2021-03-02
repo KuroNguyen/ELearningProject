@@ -4,6 +4,9 @@ let url = new URL(document.location.href);
 let id = url.searchParams.get("id");
 console.log(id);
 
+// Get token from localStorage
+let token = localStorage.getItem("USER_TOKEN");
+
 const loadRolesWithSelected = async (roleId) => {
   // Set option for role
   let roleTag = document.getElementById("roleId");
@@ -12,6 +15,9 @@ const loadRolesWithSelected = async (roleId) => {
   axios({
     url: "http://localhost:8080/api/admin/role",
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   })
     .then((response) => {
       let roles = response.data;
@@ -29,10 +35,14 @@ const loadRolesWithSelected = async (roleId) => {
 const loadData = () => {
   // Get user data
   axios({
-    url: `http://localhost:8080/api/admin/user/${id}`,
+    url: `http://localhost:8080/api/admin/human/${id}`,
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   })
     .then((response) => {
+      console.log({ response });
       let user = response.data;
       console.log(user);
       // Set value to form data
@@ -47,7 +57,7 @@ const loadData = () => {
       loadRolesWithSelected(roleId);
     })
     .catch((error) => {
-      console.log(error);
+      console.log({ error });
     });
 };
 

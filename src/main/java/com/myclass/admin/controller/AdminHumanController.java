@@ -2,11 +2,8 @@ package com.myclass.admin.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,17 +13,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.myclass.dto.LoginDto;
 import com.myclass.dto.UserDto;
-import com.myclass.service.AuthService;
 import com.myclass.service.UserService;
 
+/**
+ * Author: Nguyen Chanh Truc
+ * Created: Mar 2, 2021	
+ */
 @RestController
-@RequestMapping("api/admin/user")
-public class AdminUserController {
-	
+@RequestMapping("api/admin/human")
+public class AdminHumanController {
 	private UserService userService;
-	public AdminUserController(UserService userService) {
+	public AdminHumanController(UserService userService) {
 		this.userService = userService;
 	}
 
@@ -83,5 +81,4 @@ public class AdminUserController {
 			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 		}
 	}
-
 }

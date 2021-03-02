@@ -15,24 +15,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 @Order(2)
 public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
 	private UserDetailsService userDetailsService;
-		
+
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService)
-			.passwordEncoder(new BCryptPasswordEncoder());
+		auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
-		
+
 		http.csrf().disable() // turn off fraudulent prevention
-			.antMatcher("/api/**").authorizeRequests()
+				.antMatcher("/api/**").authorizeRequests()
 				.antMatchers("/api/user").authenticated();
-		
+
 		// Not use session
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}

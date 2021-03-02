@@ -87,7 +87,7 @@ const getInputForm = () => {
   };
   // Call insert api
   axios({
-    url: "http://localhost:8080/api/admin/user",
+    url: "http://localhost:8080/api/admin/human",
     method: "POST",
     data: user,
   })

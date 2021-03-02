@@ -5,7 +5,7 @@ const loadData = () => {
   // Get token from localStorage
   let token = localStorage.getItem("USER_TOKEN");
   axios({
-    url: "http://localhost:8080/api/admin/user",
+    url: "http://localhost:8080/api/admin/human",
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ const deleteUser = (id) => {
   swal("Bạn có chắc chắn muốn xóa không?", { buttons: true }).then((value) => {
     if (value === true) {
       axios({
-        url: `http://localhost:8080/api/admin/user/${id}`,
+        url: `http://localhost:8080/api/admin/human/${id}`,
         method: "DELETE",
       })
         .then((resp) => {
