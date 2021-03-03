@@ -42,10 +42,10 @@ function getFileName() {
 
 function saveImage() {
     let imageInput = document.getElementById("image");
-    // KIỂM TRA XEM CHỌN HÌNH CHƯA
+    // kiểm tra đã chọn hình chưa, chưa
 
 
-    // ADD FILE VÀO ĐỐI TƯỢNG FORMDATA
+    // add vào form data
     let formData = new FormData();
     formData.append('file', imageInput.files[0]);
 
@@ -78,14 +78,8 @@ function addCourse() {
 
     let flag = true;
 
-    // let titleInput = document.getElementById('title').value;
-    // let lecturesCountInput = document.getElementById('lecturesCount').value;
-    // let hourCountInput = document.getElementById('hourCount').value;
+    
      let cateInput= document.getElementById('categoryId').value;
-    // let contentInput = document.getElementById('content').value;
-    // let priceInput = document.getElementById('price').value;
-    // let discountInput = document.getElementById('discount').value;
-    // let descriptionInput = document.getElementById('description').value;
     
     let titleInput = document.getElementById('title').value;
     if (titleInput.length == 0) {
@@ -139,7 +133,7 @@ function addCourse() {
 	let priceInput = document.getElementById('price').value;
 	if (priceInput == 0) {
         flag = false;
-        document.getElementById('priceError').innerHTML = 'vui lòng nhập giá';
+        document.getElementById('priceError').innerHTML = 'Vui lòng nhập giá';
     }
 	else{
 		
@@ -149,7 +143,7 @@ function addCourse() {
 	let descriptionInput = document.getElementById('description').value;
 	if (descriptionInput.length == 0) {
         flag = false;
-        document.getElementById('descriptionError').innerHTML = 'vui lòng nhập mô tả';
+        document.getElementById('descriptionError').innerHTML = 'Vui lòng nhập mô tả';
     }
 	else{
 		
@@ -160,20 +154,14 @@ function addCourse() {
     let discountInput = document.getElementById('discount').value;
 	if (discountInput == 0) {
         flag = false;
-        document.getElementById('discountError').innerHTML = 'vui lòng nhập giảm giá';
+        document.getElementById('discountError').innerHTML = 'Vui lòng nhập giảm giá';
     }
 	else{
 		
         document.getElementById('discountError').innerHTML = '';
 	}
-
-
-
-    
-        
-
     if (flag === true) {
-        // TẠO ĐỐI TƯỢNG USER
+        // tạo user
         let courseDto = {
             "title": titleInput,
             "image": getFileName(),

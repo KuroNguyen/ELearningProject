@@ -4,7 +4,7 @@ function loadCourse() {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem("USER_TOKEN")
-          }
+        }
     })
         .then(function (resp) {
             //  Lấy ra mảng role
@@ -28,39 +28,37 @@ function loadCourse() {
                 
                 `;
             }
-            
-           tableCourse.innerHTML = courseRow;
+
+            tableCourse.innerHTML = courseRow;
         })
         .catch(function (err) {
             console.log(err.response);
-            
+
         })
 }
 loadCourse();
 
-function deleteCourse(id){
+function deleteCourse(id) {
 
     axios({
         url: `http://localhost:8080/api/admin/course/${id}`,
         method: 'DELETE',
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem("USER_TOKEN")
-          }
+        }
     })
         .then(function (resp) {
             //Lấy ra mảng role
             loadCourse();
             console.log("xóa thành công");
-            
-       
         })
         .catch(function (err) {
             console.log(err.response);
         })
 }
 
-
-function logout(){
+// xóa token
+function logout() {
     localStorage.removeItem('USER_TOKEN');
     location.replace("/login.html");
 }
