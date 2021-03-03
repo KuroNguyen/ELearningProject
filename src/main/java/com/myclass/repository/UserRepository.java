@@ -16,6 +16,8 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	@Query("Select u from User u where u.email = :email")
 	public User custom(@Param("email") String email);
 	
+	public User findByEmail(String email);
+	
 //	@Query("SELECT new com.myclass.dto.UserDto(u.id, u.fullname, u.email, u.phone, u.address, r.description) FROM users u join roles r on u.role_id = r.id")
 //	public List<UserDto> findAllJoin(); 
 	

@@ -9,6 +9,7 @@ public interface RoleService {
 	List<RoleDto> getAll();
 	RoleDto getById(int id);
 	Boolean isRoleNameExist(String roleName);
+	Boolean isRoleIdExist(int id);
 	void edit(RoleDto dto);
 	void delete(int id);
 }

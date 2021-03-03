@@ -234,7 +234,7 @@
                               </a>
                             </li>
                             <li class="breadcrumb-item">
-                              <a href="#!">Thêm mới tài khoản</a>
+                              <a href="#!">Thêm mới mục tiêu</a>
                             </li>
                           </ul>
                         </div>
@@ -243,101 +243,49 @@
                         <div class="card">
                           <div class="card-header">
                             <h2 class="text-uppercase text-center">
-                              Thêm mới tài khoản
+                              Thêm mới mục tiêu
                             </h2>
                           </div>
                           <div class="card-block">
-                            <form action="" method="post">
+                            <form action="#" method="post">
                               <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 m-auto">
                                   <div class="form-group">
-                                    <label>Họ tên</label>
+                                    <label>Tiêu đề</label>
                                     <input
                                       type="text"
-                                      path="fullname"
+                                      name="title"
                                       class="form-control"
-                                      id="fullname"
-                                    />
-                                    <span
-                                      class="text-danger"
-                                      id="fullnameError"
-                                    ></span>
-                                  </div>
-                                  <div class="form-group">
-                                    <label>Email</label>
-                                    <input
-                                      type="text"
-                                      path="email"
-                                      class="form-control"
-                                      id="email"
-                                    />
-                                    <span
-                                      class="text-danger"
-                                      id="emailError"
-                                    ></span>
-                                  </div>
-                                  <div class="form-group">
-                                    <label>Mật khẩu</label>
-                                    <input
-                                      type="password"
-                                      path="password"
-                                      class="form-control"
-                                      id="password"
-                                    />
-                                    <span
-                                      class="text-danger"
-                                      id="passwordError"
-                                    ></span>
-                                  </div>
-                                  <div class="form-group">
-                                    <label>Nhập lại mật khẩu</label>
-                                    <input
-                                      type="password"
-                                      path="confirm"
-                                      class="form-control"
-                                      id="passwordConfirm"
-                                      required
-                                    />
-                                    <span
-                                      class="text-danger"
-                                      id="confirmError"
-                                    ></span>
-                                  </div>
-                                </div>
-                                <div class="col-md-6">
-                                  <div class="form-group">
-                                    <label>Avatar</label>
-                                    <input
-                                      type="text"
-                                      path="avatar"
-                                      class="form-control"
-                                      id="avatar"
+                                      id="title"
                                     />
                                   </div>
                                   <div class="form-group">
-                                    <label>Loại người dùng</label>
+                                    <label>Khóa học</label>
                                     <select
                                       name=""
-                                      id="roleId"
+                                      id="courseSelect"
                                       class="form-control"
                                     >
-                                      <option value="">Quản trị</option>
-                                      <option value="">Giảng viên</option>
-                                      <option value="">Học viên</option>
+                                      <option value="">
+                                        Java script căn bản
+                                      </option>
+                                      <option value="">Spring MVC</option>
+                                      <option value="">Spring Boot</option>
                                     </select>
                                   </div>
                                 </div>
-                                <div class="col-12 mt-3">
-                                  <div class="form-group">
+                                <div class="col-12"></div>
+                                <div class="col-md-6 m-auto">
+                                  <div class="form-group mt-3">
                                     <button
                                       type="button"
+                                      onclick="addTarget()"
                                       class="btn btn-primary m-b-0"
-                                      onclick="getInputForm()"
                                     >
                                       Lưu lại
                                     </button>
                                     <a
-                                      href="index.html"
+                                      href="./target-list.html"
                                       class="btn btn-secondary text-white"
                                       >Quay lại</a
                                     >
@@ -395,11 +343,10 @@
     <script type="text/javascript" src="../assets/js/script.js"></script>
     <script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
     <script src="http://cdn.ckeditor.com/4.4.7/standard-all/adapters/jquery.js"></script>
-    <!--  -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Control js -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../assets/js/main/index.js"></script>
-    <script src="../assets/js/user/edit.js"></script>
-   
+    <script src="../assets/js/target/add.js"></script>
   </body>
 </html>

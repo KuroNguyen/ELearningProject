@@ -1,18 +1,24 @@
 let tBody = document.getElementById("tbodyUser");
 
+let token = localStorage.getItem("USER_TOKEN");
 const loadData = () => {
   let content = "";
+  // Get token from localStorage
+
   axios({
-    url: "http://localhost:8080/api/admin/user",
+    url: "http://localhost:8080/api/admin/human",
     method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   })
     .then(function (response) {
       let users = response.data;
+      let i =1;
       users.forEach((user) => {
-     
         content += `
                     <tr>
-                        <td>${user.id}</td>
+                        <td>${i++}</td>
                         <td>${user.fullname}</td>
                         <td>${user.email}</td>
                         <td>${user.avatar}</td>
@@ -27,7 +33,7 @@ const loadData = () => {
       tBody.innerHTML = content;
     })
     .catch(function (error) {
-      console.log(error);
+      console.log({ error });
     });
 };
 
@@ -37,8 +43,11 @@ const deleteUser = (id) => {
   swal("Bạn có chắc chắn muốn xóa không?", { buttons: true }).then((value) => {
     if (value === true) {
       axios({
-        url: `http://localhost:8080/api/admin/user/${id}`,
+        url: `http://localhost:8080/api/admin/human/${id}`,
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
         .then((resp) => {
           swal("Thành công!", "Xóa thành công!", "success").then(function () {

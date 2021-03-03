@@ -13,10 +13,6 @@ import com.myclass.entity.Course;
 import com.myclass.service.CategoryService;
 import com.myclass.service.CourseService;
 
-/**
- * Author: Nguyen Chanh Truc
- * Created: Feb 10, 2021	
- */
 @RestController
 @RequestMapping("api/course")
 public class CourseController {
@@ -64,9 +60,9 @@ public class CourseController {
 				return new ResponseEntity<Object>(idIsNotExist, HttpStatus.BAD_REQUEST);
 
 			// trả về course theo id đã gửi lên
-			return new ResponseEntity<Object>(courseService.findCourseDtoById(id), HttpStatus.OK);
+//			return new ResponseEntity<Object>(courseService.findCourseDtoById(id), HttpStatus.OK);
+			return new ResponseEntity<Object>(courseService.getCourseDetailsById(id), HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		}
 		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);

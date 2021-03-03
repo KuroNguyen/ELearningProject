@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,13 +15,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myclass.dto.AddCourseDto;
 import com.myclass.dto.AddUserCourseDto;
+import com.myclass.dto.CourseDetailDto;
 import com.myclass.dto.CourseDto;
 import com.myclass.dto.MenuCourseDto;
+import com.myclass.dto.TargetDto;
 import com.myclass.dto.UserCourseDto;
+import com.myclass.dto.VideoDto;
 import com.myclass.entity.Course;
+import com.myclass.entity.Target;
 import com.myclass.entity.User;
 import com.myclass.entity.UserCourseKey;
 import com.myclass.entity.UserCourses;
+import com.myclass.entity.Video;
 import com.myclass.repository.CourseRepository;
 import com.myclass.repository.UserCourseRepository;
 import com.myclass.repository.UserRepository;
@@ -180,7 +186,6 @@ public class CourseServiceImpl implements CourseService {
 		courseRepository.save(course);
 	}
 
-
 	public void addCourse(AddUserCourseDto dto) {
 		User user = userRepository.findById(dto.getUserId()).get();
 		Course course = courseRepository.findById(dto.getCourseId()).get();
@@ -227,8 +232,57 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	public boolean checkUserWithCourse(AddUserCourseDto dto) {
-		UserCourseKey key = new UserCourseKey(dto.getUserId(),dto.getCourseId());
+		UserCourseKey key = new UserCourseKey(dto.getUserId(), dto.getCourseId());
 		return userCourseRepository.findById(key).isPresent();
 	}
 
+	@Override
+	public CourseDetailDto getCourseDetailsById(int id) {
+		// Get entity from database
+		Course entity = courseRepository.findById(id).get();
+		// Convert from entity to dto
+		CourseDetailDto dto = new CourseDetailDto();
+		dto.setId(id);
+		dto.setTitle(entity.getTitle());
+		dto.setImage(entity.getImage());
+		dto.setLecturesCount(entity.getLecturesCount());
+		dto.setHourCount(entity.getHourCount());
+		dto.setViewCount(entity.getViewCount());
+		dto.setPrice((float) entity.getPrice());
+		dto.setDiscount((int) entity.getPrice());
+		dto.setPromotionPrice((float) entity.getPromotionPrice());
+		dto.setDescription(entity.getDescription());
+		dto.setContent(entity.getContent());
+		dto.setCategoryId(entity.getCategoryId());
+		dto.setCategoryName(entity.getCategory().getTitle());
+		dto.setLastUpdate(entity.getLastUpdate());
+		// Set targets
+		List<TargetDto> targetList = entity.getTargets().stream().map(target -> convertTargetToTargetDto(target))
+				.collect(Collectors.toList());
+		dto.setTargets(targetList);
+		// Set videos
+		List<VideoDto> videoList = entity.getVideos().stream().map(video -> convertVideoToVideoDto(video))
+				.collect(Collectors.toList());
+		dto.setVideos(videoList);
+
+		return dto;
+	}
+
+	private TargetDto convertTargetToTargetDto(Target entity) {
+		TargetDto dto = new TargetDto();
+		dto.setCourseId(entity.getCourseId());
+		dto.setId(entity.getId());
+		dto.setTitle(entity.getTitle());
+		return dto;
+	}
+
+	private VideoDto convertVideoToVideoDto(Video entity) {
+		VideoDto dto = new VideoDto();
+		dto.setCourseId(entity.getCourseId());
+		dto.setTitle(entity.getTitle());
+		dto.setId(entity.getId());
+		dto.setTimeCount(entity.getTimeCount());
+		dto.setUrl(entity.getUrl());
+		return dto;
+	}
 }

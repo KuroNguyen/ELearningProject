@@ -130,7 +130,7 @@ const loadSideBar = () => {
         </a>
       </li>
       <li class="">
-        <a href="../../../../templates/admin/category/category-index.html">
+        <a href="../../../admin/category/category-index.html">
           <span class="pcoded-micon"
             ><i class="feather icon-layers"></i
           ></span>
@@ -138,7 +138,7 @@ const loadSideBar = () => {
         </a>
       </li>
       <li class="">
-        <a href="../../../../templates/admin/course/course-list.html">
+        <a href="../../../admin/course/course-list.html">
           <span class="pcoded-micon"
             ><i class="feather icon-layers"></i
           ></span>
@@ -146,7 +146,7 @@ const loadSideBar = () => {
         </a>
       </li>
       <li class="">
-        <a href="../../../../templates/admin/video/video-list.html">
+        <a href="../../../admin/video/video-list.html">
           <span class="pcoded-micon"
             ><i class="feather icon-layers"></i
           ></span>
@@ -154,7 +154,7 @@ const loadSideBar = () => {
         </a>
       </li>
       <li class="">
-        <a href="../../../../templates/admin/target/target-list.html">
+        <a href="../../../admin/targets/target-list.html">
           <span class="pcoded-micon"
             ><i class="feather icon-layers"></i
           ></span>
@@ -162,7 +162,7 @@ const loadSideBar = () => {
         </a>
       </li>
       <li class="">
-        <a href="../../../../templates/admin/user/user-index.html">
+        <a href="../../../admin/user/index.html">
           <span class="pcoded-micon"
             ><i class="feather icon-user"></i
           ></span>
@@ -170,7 +170,7 @@ const loadSideBar = () => {
         </a>
       </li>
       <li class="">
-        <a href="../../../../templates/admin/role/role-index.html">
+        <a href="../../../admin/role/role-index.html">
           <span class="pcoded-micon"
             ><i class="feather icon-user"></i
           ></span>

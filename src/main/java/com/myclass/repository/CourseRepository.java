@@ -25,4 +25,5 @@ public interface CourseRepository extends JpaRepository<Course, Integer>{
 
 	@Query("SELECT new com.myclass.dto.CourseDto(c.id, c.title, c.image, c.lecturesCount, c.hourCount, c.viewCount, c.price, c.discount, c.promotionPrice, c.description, c.content, ct.id, ct.title, c.lastUpdate) FROM Course c LEFT JOIN Category ct ON c.categoryId = ct.id WHERE c.id = :id")
 	public CourseDto getCourseDtoWithCategoryById(@Param("id") int id);
+	
 }
