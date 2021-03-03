@@ -37,9 +37,9 @@ public class UserServiceImpl implements UserService{
 			UserDto dto = new UserDto(
 					entity.getId(),
 					entity.getEmail(),
+					
 					entity.getFullname(),
 					entity.getPassword(),
-					
 					entity.getRoleId()
 				);
 			dto.setRoleDesc(role.getDescription());
@@ -92,8 +92,8 @@ public class UserServiceImpl implements UserService{
 		UserDto dto = new UserDto(
 				entity.getId(),
 				entity.getEmail(),
-				entity.getPassword(),
 				entity.getFullname(),
+				entity.getPassword(),
 				entity.getAvatar(),
 				entity.getPhone(), entity.getAddress(), entity.getRoleId()
 			);

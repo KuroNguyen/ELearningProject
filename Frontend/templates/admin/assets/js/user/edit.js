@@ -46,8 +46,14 @@ const loadData = () => {
       let user = response.data;
       console.log(user);
       // Set value to form data
+     
+      console.log(user.email);
+      console.log(user.fullname);
+      console.log(user.password);
+
       document.getElementById("email").value = user.email;
       document.getElementById("fullname").value = user.fullname;
+   
       document.getElementById("avatar").value = user.avatar;
       document.getElementById("roleId").value = user.roleId;
 
