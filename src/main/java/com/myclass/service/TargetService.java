@@ -2,6 +2,8 @@ package com.myclass.service;
 
 import java.util.List;
 
+import org.springframework.util.MultiValueMap;
+
 import com.myclass.dto.TargetDto;
 
 /**
@@ -16,4 +18,8 @@ public interface TargetService {
 	Boolean isTargetIdExist(int id);
 	void edit(TargetDto dto);
 	void delete(int id);
+	MultiValueMap<String, String> getAllWithCourse();
+	MultiValueMap<String, String> getMenuTargetByCourseId(int id);
+	boolean checkExistById(int id);
+	MultiValueMap<String, String> getTargetById(int id);
 }

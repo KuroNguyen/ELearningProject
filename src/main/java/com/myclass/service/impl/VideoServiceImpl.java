@@ -3,8 +3,11 @@ package com.myclass.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import com.myclass.dto.AddVideoDto;
+import com.myclass.dto.EditVideoDto;
 import com.myclass.dto.VideoDto;
 import com.myclass.entity.Video;
 import com.myclass.repository.VideoRepository;
@@ -81,5 +84,65 @@ public class VideoServiceImpl implements VideoService {
 	@Override
 	public void delete(int id) {
 		videoRepository.deleteById(id);
+	}
+
+	@Override
+	public List<VideoDto> getAllWithCourse() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void add(AddVideoDto entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public EditVideoDto getVideoById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void edit(EditVideoDto entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean checkExistByTitle(String title) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean checkExistById(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<VideoDto> getMenuVideoByCourseId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean checkProperty(String orderBy) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Page<Video> findAllPaging(String orderBy, int i, int pageSize, boolean b) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
