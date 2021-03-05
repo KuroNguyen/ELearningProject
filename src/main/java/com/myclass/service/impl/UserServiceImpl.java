@@ -68,19 +68,11 @@ public class UserServiceImpl implements UserService{
 	public void edit(UserDto dto) {
 		// TRUY VẤN LẤY RA DỮ LIỆU ĐANG LƯU TRONG DB
 		User entity = userRepository.findById(dto.getId()).get();
-		
-		// bị lỗi do code js
-		System.out.println(dto.getId());
-		System.out.println(dto.getRoleId());
-		System.out.println(dto.getFullname());
-		System.out.println(dto.getEmail());
 		// MAPPING USER DTO SANG USER ENTITY
 		entity.setEmail(dto.getEmail());
 		entity.setFullname(dto.getFullname());
-		entity.setAddress(dto.getAddress());
-		entity.setPhone(dto.getPhone());
 		entity.setAvatar(dto.getAvatar());
-		entity.setRoleId(2);
+		entity.setRoleId(dto.getRoleId());
 		// NẾU NGƯỜI DÙNG NHẬP MẬT KHẨU MỚI THÌ ĐỔI LẠI MẬT KHẨU
 		if(entity.getPassword() != null && !entity.getPassword().isEmpty()) {
 			String hashed = BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt());
@@ -126,42 +118,6 @@ public class UserServiceImpl implements UserService{
 				entity.getPhone(), entity.getAddress(), entity.getRoleId()
 			);
 		return dto;
-	}
-
-	@Override
-	public void editProfile(UserDto dto) {
-		// TODO Auto-generated method stub
-	User entity = userRepository.findById(dto.getId()).get();
-		
-		// bị lỗi do code js
-//		System.out.println(dto.getId());
-//		System.out.println(dto.getRoleId());
-//		System.out.println(dto.getFullname());
-//		System.out.println(dto.getEmail());
-		// MAPPING USER DTO SANG USER ENTITY
-		entity.setEmail(dto.getEmail());
-		entity.setFullname(dto.getFullname());
-		entity.setAddress(dto.getAddress());
-		entity.setPhone(dto.getPhone());
-		entity.setAvatar(dto.getAvatar());
-		entity.setRoleId(2);
-		
-		userRepository.save(entity);
-		
-	}
-
-	@Override
-	public void editPassword(UserDto dto) {
-		// TODO Auto-generated method stub
-		User entity = userRepository.findById(dto.getId()).get();
-		entity.setRoleId(2);
-		// NẾU NGƯỜI DÙNG NHẬP MẬT KHẨU MỚI THÌ ĐỔI LẠI MẬT KHẨU
-		if(entity.getPassword() != null && !entity.getPassword().isEmpty()) {
-			String hashed = BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt());
-			entity.setPassword(hashed);
-		}
-		userRepository.save(entity);
-		
 	}
 
 
