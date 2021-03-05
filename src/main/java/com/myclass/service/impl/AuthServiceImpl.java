@@ -70,6 +70,9 @@ public class AuthServiceImpl implements AuthService {
 		dto.setToken(token);
 		dto.setUserId(entity.getId());
 		dto.setUserName(entity.getFullname());
+		dto.setEmail(entity.getEmail());
+		dto.setPhone(entity.getPhone());
+		dto.setAddress(entity.getAddress());
 		
 		return dto;
 	}

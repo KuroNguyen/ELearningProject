@@ -10,6 +10,8 @@ public interface UserService {
 	UserDto getById(int id);
 	UserDto getByEmail(String email);
 	void edit(UserDto dto);
+	void editProfile(UserDto dto);
+	void editPassword(UserDto dto);
 	void delete(int id);
 	boolean checkExistById(int userId);
 }
