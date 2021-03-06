@@ -2,12 +2,16 @@ package com.myclass.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 
 import com.myclass.dto.AddCourseDto;
+import com.myclass.dto.AddUserCourseDto;
 import com.myclass.dto.CourseDetailDto;
 import com.myclass.dto.CourseDto;
 import com.myclass.dto.MenuCourseDto;
+import com.myclass.dto.UserCourseDto;
 import com.myclass.entity.Course;
 
 /**
@@ -42,4 +46,14 @@ public interface CourseService {
 	String getImageById(int id);
 
 	void editImageById(int id, String image);
+
+	List<UserCourseDto> getAllUserCourse();
+
+	boolean checkUserWithCourse(AddUserCourseDto dto);
+
+	List<UserCourseDto> getAllCourseByUserId(int userId);
+
+	List<UserCourseDto> getAllUserByCourseId(int courseId);
+
+	void addCourse(AddUserCourseDto dto);
 }

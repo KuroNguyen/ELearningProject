@@ -6,7 +6,12 @@ import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import com.myclass.dto.AddUserDto;
+import com.myclass.dto.EditUserDto;
+import com.myclass.dto.SignUpDto;
 import com.myclass.dto.UserDto;
+import com.myclass.dto.UserInfoDto;
+import com.myclass.dto.UserLoginDto;
 import com.myclass.entity.Role;
 import com.myclass.entity.User;
 import com.myclass.repository.RoleRepository;
@@ -118,6 +123,108 @@ public class UserServiceImpl implements UserService{
 				entity.getPhone(), entity.getAddress(), entity.getRoleId()
 			);
 		return dto;
+	}
+
+	@Override
+	public List<UserDto> getAllUserWithRole() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EditUserDto getUserById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void add(AddUserDto entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void edit(EditUserDto entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void signUp(SignUpDto dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean checkExistByEmail(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean checkExistByPhone(String phone) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public UserLoginDto getUserLoginDtoByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean checkPassword(String email, String oldPassword) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void changePassword(String email, String newPassword) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setNewPassword(int id, String newPassword) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getAvatarById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void editAvatarById(int id, String image) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public UserInfoDto getInfoByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getAvatarByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void editAvatarByEmail(String email, String upload) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
