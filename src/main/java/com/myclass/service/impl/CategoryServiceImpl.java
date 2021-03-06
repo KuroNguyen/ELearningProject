@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
 
+import com.myclass.dto.AddCategoryDto;
 import com.myclass.dto.CategoryDto;
 import com.myclass.entity.Category;
 import com.myclass.repository.CategoryRepository;
@@ -79,16 +79,15 @@ public class CategoryServiceImpl implements CategoryService{
 		// kiểm tra id có tồn tại dưới database chưa
 		return categoryRepository.findById(id).isPresent();
 	}
-
-	@Override
-	public MultiValueMap<String, String> getAllCategory() {
-		// TODO Auto-generated method stub
-		return null;
+	public void add(AddCategoryDto entity) {
+		// thêm category vào database
+		categoryRepository.save(new Category(0, entity.getTitle(), entity.getIcon()));
 	}
 
-	@Override
-	public MultiValueMap<String, String> getCategoryById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public boolean checkExistByTitle(String title) {
+		// kiểm tra category có tồn tại dưới database chưa
+		if (categoryRepository.findByTitle(title) == null)
+			return false;
+		return true;
+}
 }

@@ -53,14 +53,14 @@ public class VideoController {
 	}
 	
 	@GetMapping("{id}")
-	public Object getVideoByid(@PathVariable int id) {
+	public Object getVideoByid(@PathVariable String title,@PathVariable int id) {
 		try {
 			// check xem video id có tồn tại hay không
-			if (!videoService.checkExistById(id))
+			if (!videoService.isExistTitleWithCourseId(title,id))
 				return new ResponseEntity<Object>(idIsNotExist, HttpStatus.BAD_REQUEST);
 
 			// trả về video theo id gửi lên
-			return new ResponseEntity<Object>(videoService.getVideoById(id), HttpStatus.OK);
+			return new ResponseEntity<Object>(videoService.getById(id), HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -72,7 +72,7 @@ public class VideoController {
 	public Object get() {
 		try {
 			// trả về danh sách video
-			return new ResponseEntity<Object>(videoService.getAllWithCourse(), HttpStatus.OK);
+			return new ResponseEntity<Object>(videoService.getAll(), HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

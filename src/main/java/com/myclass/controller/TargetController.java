@@ -48,11 +48,11 @@ public class TargetController {
 	public Object getTargetByid(@PathVariable int id) {
 		try {
 			// check xem target id có tồn tại hay không
-			if (!targetService.checkExistById(id))
+			if (!targetService.isTargetIdExist(id))
 				return new ResponseEntity<Object>(idIsNotExist, HttpStatus.BAD_REQUEST);
 
 			// trả về target theo id gửi lên
-			return new ResponseEntity<Object>(targetService.getTargetById(id), HttpStatus.OK);
+			return new ResponseEntity<Object>(targetService.getAllByCourseId(id), HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -64,7 +64,7 @@ public class TargetController {
 	public Object get() {
 		try {
 			// trả về danh sách target
-			return new ResponseEntity<Object>(targetService.getAllWithCourse(), HttpStatus.OK);
+			return new ResponseEntity<Object>(targetService.getAll(), HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

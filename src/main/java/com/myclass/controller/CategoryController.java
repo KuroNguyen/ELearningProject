@@ -26,7 +26,7 @@ public class CategoryController {
 	public Object get() {
 		try {
 			// trả về danh sách category
-			return new ResponseEntity<Object>(categoryService.getAllCategory(), HttpStatus.OK);
+			return new ResponseEntity<Object>(categoryService.getAll(), HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -42,7 +42,7 @@ public class CategoryController {
 				return new ResponseEntity<Object>(idIsNotExist, HttpStatus.BAD_REQUEST);
 
 			// trả về category theo id đã gửi lên
-			return new ResponseEntity<Object>(categoryService.getCategoryById(id), HttpStatus.OK);
+			return new ResponseEntity<Object>(categoryService.getById(id), HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

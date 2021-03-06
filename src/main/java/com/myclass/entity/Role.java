@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "roles")
 @Data
-@NoArgsConstructor
+
 @Where(clause = "active=true")
 @SQLDelete(sql = "UPDATE roles SET active = false WHERE id = ?")
 public class Role extends BaseEntity<String> {
@@ -38,5 +38,15 @@ public class Role extends BaseEntity<String> {
 		
 		@OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
 		private List<User> users;
-			
+		public Role() {
+			super();
+		}
+		public Role(int id, String name, String description) {
+			super();
+			this.id = id;
+			this.name = name;
+			this.description = description;
+		}
+
+		
 }

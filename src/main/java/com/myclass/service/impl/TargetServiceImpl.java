@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
 
+import com.myclass.dto.AddTargetDto;
 import com.myclass.dto.TargetDto;
 import com.myclass.entity.Target;
 import com.myclass.repository.TargetRepository;
@@ -95,27 +95,20 @@ public class TargetServiceImpl implements TargetService{
 		return targetRepository.findById(id).isPresent();
 	}
 
-	@Override
-	public MultiValueMap<String, String> getAllWithCourse() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean checkExistByTitle(String title) {
+		// kiểm tra xem target title có tồn tại dưới database chưa
+		if(targetRepository.findByTitle(title) == null)
+			return false;
+		return true;
 	}
 
-	@Override
-	public MultiValueMap<String, String> getMenuTargetByCourseId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void add(AddTargetDto entity) {
+		// thêm mới target
+		targetRepository.save(new Target(0, entity.getTitle(), entity.getCourseId()));
 	}
 
-	@Override
-	public boolean checkExistById(int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public MultiValueMap<String, String> getTargetById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+public List<TargetDto> getMenuTargetByCourseId(int id) {
+		
+		return targetRepository.getMenuTargetByCourseId(id);
 	}
 }

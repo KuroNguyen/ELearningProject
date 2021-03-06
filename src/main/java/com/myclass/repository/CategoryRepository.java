@@ -7,5 +7,5 @@ import com.myclass.entity.Category;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer>{
-
+	public Category findByTitle(String title);
 }

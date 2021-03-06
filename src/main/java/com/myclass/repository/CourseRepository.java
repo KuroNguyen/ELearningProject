@@ -15,7 +15,7 @@ import com.myclass.entity.Course;
  * Created: Feb 9, 2021	
  */
 @Repository
-public interface CourseRepository extends JpaRepository<Course, Integer>{
+public interface CourseRepository extends BaseRepository<Course, Integer>{
 	@Query("SELECT new com.myclass.dto.CourseDto(c.id, c.title, c.image, c.lecturesCount, c.hourCount, c.viewCount, c.price, c.discount, c.promotionPrice, c.description, c.content, ct.id, ct.title, c.lastUpdate) FROM Course c LEFT JOIN Category ct ON c.categoryId = ct.id")
 	public List<CourseDto> getAllWithCategory();
 

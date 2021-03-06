@@ -6,8 +6,6 @@ import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import com.myclass.dto.AddUserDto;
-import com.myclass.dto.EditUserDto;
 import com.myclass.dto.SignUpDto;
 import com.myclass.dto.UserDto;
 import com.myclass.dto.UserInfoDto;
@@ -107,9 +105,9 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public boolean checkExistById(int userId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		// kiểm tra xem user id có tồn tại dưới database chưa
+				return userRepository.findById(userId).isPresent();
+			}
 
 	@Override
 	public UserDto getByEmail(String email) {
@@ -125,106 +123,70 @@ public class UserServiceImpl implements UserService{
 		return dto;
 	}
 
-	@Override
-	public List<UserDto> getAllUserWithRole() {
-		// TODO Auto-generated method stub
-		return null;
+	public void signUp(SignUpDto entity) {
+		// đăng ký tài khoản user thì sẽ có role là student
+		userRepository.save(new User(0, entity.getEmail(), entity.getFullname(),
+				BCrypt.hashpw(entity.getPassword(), BCrypt.gensalt()), "", entity.getAddress(), entity.getPhone(), 3));
 	}
 
-	@Override
-	public EditUserDto getUserById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void add(AddUserDto entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void edit(EditUserDto entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void signUp(SignUpDto dto) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public boolean checkExistByEmail(String email) {
-		// TODO Auto-generated method stub
-		return false;
+		// kiểm tra xem user email có tồn tại dưới database chưa
+		if (userRepository.findByEmail(email) == null)
+			return false;
+		return true;
 	}
 
-	@Override
 	public boolean checkExistByPhone(String phone) {
-		// TODO Auto-generated method stub
-		return false;
+		// kiểm tra xem user sdt có tồn tại dưới database chưa
+		if (userRepository.findByPhone(phone) == null)
+			return false;
+		return true;
 	}
-
-	@Override
 	public UserLoginDto getUserLoginDtoByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		// chuyển từ entity sang dto
+		User user = userRepository.findByEmail(email);
+		return new UserLoginDto(user.getId(), user.getEmail(), user.getFullname(), user.getAvatar(), user.getPhone(),
+				user.getAddress(), user.getRole().getDescription());
 	}
 
-	@Override
 	public boolean checkPassword(String email, String oldPassword) {
-		// TODO Auto-generated method stub
-		return false;
+		User user = userRepository.findByEmail(email);
+		return BCrypt.checkpw(oldPassword, user.getPassword());
 	}
-
-	@Override
 	public void changePassword(String email, String newPassword) {
-		// TODO Auto-generated method stub
-		
+		User user = userRepository.findByEmail(email);
+		user.setPassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()));
+		userRepository.save(user);
 	}
 
-	@Override
 	public void setNewPassword(int id, String newPassword) {
-		// TODO Auto-generated method stub
-		
+		User user = userRepository.findById(id).get();
+		user.setPassword(BCrypt.hashpw(newPassword, BCrypt.gensalt()));
+		userRepository.save(user);
 	}
 
-	@Override
 	public String getAvatarById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findById(id).get().getAvatar();
 	}
-
-	@Override
 	public void editAvatarById(int id, String image) {
-		// TODO Auto-generated method stub
-		
+		User user = userRepository.findById(id).get();
+		user.setAvatar(image);
+		userRepository.save(user);
 	}
 
-	@Override
-	public UserInfoDto getInfoByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String getAvatarByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findByEmail(email).getAvatar();
+	}
+	public UserInfoDto getInfoByEmail(String email) {
+		User user = userRepository.findByEmail(email);
+		return new UserInfoDto(user.getFullname(),user.getAvatar(),user.getPhone(),user.getAddress());
 	}
 
-	@Override
 	public void editAvatarByEmail(String email, String upload) {
-		// TODO Auto-generated method stub
-		
+		User user = userRepository.findByEmail(email);
+		user.setAvatar(upload);
+		userRepository.save(user);
 	}
 
 

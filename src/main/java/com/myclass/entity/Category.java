@@ -29,7 +29,7 @@ import lombok.ToString;
 @Table(name = "categories")
 @Data
 @ToString
-@NoArgsConstructor
+
 @Where(clause = "active=true")
 @SQLDelete(sql = "UPDATE categories SET active = false WHERE id = ?")
 public class Category extends BaseEntity<String> {
@@ -52,5 +52,13 @@ public class Category extends BaseEntity<String> {
 //		@JoinTable(name = "course_category", joinColumns = @JoinColumn(name = "category_id"),
 //		inverseJoinColumns = @JoinColumn(name = "course_id"))
 //		private List<Course> courses;
-	
+		public Category() {
+			super();
+		}
+		public Category(int id, String title, String icon) {
+			super();
+			this.id = id;
+			this.title = title;
+			this.icon = icon;
+		}
 }

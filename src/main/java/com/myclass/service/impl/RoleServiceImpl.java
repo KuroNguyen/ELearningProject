@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.myclass.dto.AddRoleDto;
 import com.myclass.dto.RoleDto;
 import com.myclass.entity.Role;
 import com.myclass.repository.RoleRepository;
@@ -86,5 +87,12 @@ public class RoleServiceImpl implements RoleService{
 	@Override
 	public Boolean isRoleIdExist(int id) {
 		return roleRepository.findById(id).isPresent();
+	}
+
+	@Override
+	public void add(AddRoleDto entity) {
+		// thêm role mới
+				roleRepository.save(new Role(0, entity.getName(), entity.getDescription()));
+		
 	}
 }
