@@ -65,7 +65,7 @@ const updateTarget = () => {
     .then((resp) => {
       console.log(resp);
       swal("Thông báo!", "Sửa đổi thành công", "success").then(() => {
-        document.location.href = "../../../admin/target/target-list.html";
+        document.location.href = "../../../admin/targets/target-list.html";
       });
     })
     .catch((error) => {

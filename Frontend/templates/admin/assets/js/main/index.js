@@ -154,7 +154,7 @@ const loadSideBar = () => {
         </a>
       </li>
       <li class="">
-        <a href="../../../admin/target/target-list.html">
+        <a href="../../../admin/targets/target-list.html">
           <span class="pcoded-micon"
             ><i class="feather icon-layers"></i
           ></span>
