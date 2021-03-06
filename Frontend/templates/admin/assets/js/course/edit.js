@@ -4,7 +4,7 @@ function loadCategory() {
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem("USER_TOKEN")
-          }
+        }
     })
         .then(function (resp) {
             //  Lấy ra mảng role
@@ -21,7 +21,7 @@ function loadCategory() {
         })
         .catch(function (err) {
             console.log(err.response);
-            
+
 
         })
 }
@@ -42,10 +42,6 @@ function getFileName() {
 
 function saveImage() {
     let imageInput = document.getElementById("image");
-    // KIỂM TRA XEM CHỌN HÌNH CHƯA
-
-
-    // ADD FILE VÀO ĐỐI TƯỢNG FORMDATA
     let formData = new FormData();
     formData.append('file', imageInput.files[0]);
 
@@ -78,90 +74,57 @@ function editCourse() {
     const urlParams = new URLSearchParams(queryString);
     const idCourse = urlParams.get('id');
     let flag = true;
-
     let titleInput = document.getElementById('title').value;
     let lecturesCountInput = document.getElementById('lecturesCount').value;
     let hourCountInput = document.getElementById('hourCount').value;
-    let cateInput= document.getElementById('categoryId').value;
+    let cateInput = document.getElementById('categoryId').value;
     let contentInput = document.getElementById('content').value;
     let priceInput = document.getElementById('price').value;
     let discountInput = document.getElementById('discount').value;
     let descriptionInput = document.getElementById('description').value;
-    
-    
- 
-
-   
-
-
-
-    
-        
 
     if (flag === true) {
         // TẠO ĐỐI TƯỢNG USER
         let courseDto = {
-            "id":idCourse,
+            "id": idCourse,
             "title": titleInput,
             "image": getFileName(),
             "lecturesCount": lecturesCountInput,
             "price": priceInput,
             "hourCount": hourCountInput,
             "category": {
-                "id":cateInput,
+                "id": cateInput,
             },
             "content": contentInput,
             "description": descriptionInput,
             "discount": discountInput,
             "lectureCount": lecturesCountInput
-            
+
         }
 
-     
-
-
-            
-
-
-                
-
-
-        // GỌI API THÊM MỚI
+        // gọi api thêm
         axios({
             url: `http://localhost:8080/api/admin/course/${idCourse}`,
             method: 'PUT',
             data: courseDto,
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem("USER_TOKEN")
-              }
+            }
 
+        }).then(function (resp) {
+            console.log('Thành công! ' + resp.data);
+            swal("Good job!", "Sửa Thành Công!", "success");
+            saveImage();
+        }).catch(function (err) {
+            console.log(courseDto);
+            swal("Sorry", "Thêm Mới Thất Bại!", "error");
         })
-            .then(function (resp) {
-                console.log('Thành công! ' + resp.data);
-                swal("Good job!", "Sửa Thành Công!", "success");
-                saveImage();
-                
-                
 
-               
-
-                
-            
-        
-
-
-
-            })
-            .catch(function (err) {
-                console.log(courseDto);
-                swal("Sorry", "Thêm Mới Thất Bại!", "error");
-            })
-    
     }
 }
 
 
-function logout(){
+function logout() {
     localStorage.removeItem('USER_TOKEN');
     location.replace("/login.html");
 }

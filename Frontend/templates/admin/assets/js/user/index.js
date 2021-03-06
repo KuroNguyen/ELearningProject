@@ -1,9 +1,10 @@
 let tBody = document.getElementById("tbodyUser");
 
+let token = localStorage.getItem("USER_TOKEN");
 const loadData = () => {
   let content = "";
   // Get token from localStorage
-  let token = localStorage.getItem("USER_TOKEN");
+
   axios({
     url: "http://localhost:8080/api/admin/human",
     method: "GET",
@@ -13,10 +14,11 @@ const loadData = () => {
   })
     .then(function (response) {
       let users = response.data;
+      let i =1;
       users.forEach((user) => {
         content += `
                     <tr>
-                        <td>${user.id}</td>
+                        <td>${i++}</td>
                         <td>${user.fullname}</td>
                         <td>${user.email}</td>
                         <td>${user.avatar}</td>
@@ -43,6 +45,9 @@ const deleteUser = (id) => {
       axios({
         url: `http://localhost:8080/api/admin/human/${id}`,
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
         .then((resp) => {
           swal("Thành công!", "Xóa thành công!", "success").then(function () {
