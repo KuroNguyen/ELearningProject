@@ -14,4 +14,5 @@ public interface UserService {
 	void editPassword(UserDto dto);
 	void delete(int id);
 	boolean checkExistById(int userId);
+	UserDto checkMail(String email);
 }

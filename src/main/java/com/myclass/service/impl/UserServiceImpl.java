@@ -14,11 +14,11 @@ import com.myclass.repository.UserRepository;
 import com.myclass.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService{
-	
+public class UserServiceImpl implements UserService {
+
 	private UserRepository userRepository;
-	private RoleRepository roleRepository; 
-	
+	private RoleRepository roleRepository;
+
 	public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
 		this.userRepository = userRepository;
 		this.roleRepository = roleRepository;
@@ -31,21 +31,16 @@ public class UserServiceImpl implements UserService{
 		List<User> entities = userRepository.findAll();
 		// MAPPING USER ENTITY SANG USER DTO
 		for (User entity : entities) {
-			// GỌI PHƯƠNG THỨC TRUY VẤN LẤY ROLE THEO id 
+			// GỌI PHƯƠNG THỨC TRUY VẤN LẤY ROLE THEO id
 			// (roleId là khóa ngoại lưu trong bảng user)
 			Role role = roleRepository.findById(entity.getRoleId()).get();
-			UserDto dto = new UserDto(
-					entity.getId(),
-					entity.getEmail(),
-					
-					entity.getFullname(),
-					entity.getPassword(),
-					entity.getRoleId()
-				);
+			UserDto dto = new UserDto(entity.getId(), entity.getEmail(),
+
+					entity.getFullname(), entity.getPassword(), entity.getRoleId());
 			dto.setRoleDesc(role.getDescription());
 			dtos.add(dto);
 		}
-		
+
 //		List<UserDto> dtos = userRepository.findAllJoin();
 		return dtos;
 	}
@@ -60,15 +55,15 @@ public class UserServiceImpl implements UserService{
 		entity.setFullname(dto.getFullname());
 		entity.setAvatar(dto.getAvatar());
 		entity.setRoleId(2);
-		
+
 		userRepository.save(entity);
 	}
-	
+
 	@Override
 	public void edit(UserDto dto) {
 		// TRUY VẤN LẤY RA DỮ LIỆU ĐANG LƯU TRONG DB
 		User entity = userRepository.findById(dto.getId()).get();
-		
+
 		// bị lỗi do code js
 		System.out.println(dto.getId());
 		System.out.println(dto.getRoleId());
@@ -82,7 +77,7 @@ public class UserServiceImpl implements UserService{
 		entity.setAvatar(dto.getAvatar());
 		entity.setRoleId(2);
 		// NẾU NGƯỜI DÙNG NHẬP MẬT KHẨU MỚI THÌ ĐỔI LẠI MẬT KHẨU
-		if(entity.getPassword() != null && !entity.getPassword().isEmpty()) {
+		if (entity.getPassword() != null && !entity.getPassword().isEmpty()) {
 			String hashed = BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt());
 			entity.setPassword(hashed);
 		}
@@ -97,42 +92,31 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserDto getById(int id) {
 		User entity = userRepository.findById(id).get();
-		UserDto dto = new UserDto(
-				entity.getId(),
-				entity.getEmail(),
-				entity.getFullname(),
-				entity.getPassword(),
-				entity.getAvatar(),
-				entity.getPhone(), entity.getAddress(), entity.getRoleId()
-			);
+		UserDto dto = new UserDto(entity.getId(), entity.getEmail(), entity.getFullname(), entity.getPassword(),
+				entity.getAvatar(), entity.getPhone(), entity.getAddress(), entity.getRoleId());
 		return dto;
 	}
 
 	@Override
 	public boolean checkExistById(int userId) {
 		// TODO Auto-generated method stub
+
 		return false;
 	}
 
 	@Override
 	public UserDto getByEmail(String email) {
 		User entity = userRepository.findByEmail(email);
-		UserDto dto = new UserDto(
-				entity.getId(),
-				entity.getEmail(),
-				entity.getPassword(),
-				entity.getFullname(),
-				entity.getAvatar(),
-				entity.getPhone(), entity.getAddress(), entity.getRoleId()
-			);
+		UserDto dto = new UserDto(entity.getId(), entity.getEmail(), entity.getPassword(), entity.getFullname(),
+				entity.getAvatar(), entity.getPhone(), entity.getAddress(), entity.getRoleId());
 		return dto;
 	}
 
 	@Override
 	public void editProfile(UserDto dto) {
 		// TODO Auto-generated method stub
-	User entity = userRepository.findById(dto.getId()).get();
-		
+		User entity = userRepository.findById(dto.getId()).get();
+
 		// bị lỗi do code js
 //		System.out.println(dto.getId());
 //		System.out.println(dto.getRoleId());
@@ -145,9 +129,9 @@ public class UserServiceImpl implements UserService{
 		entity.setPhone(dto.getPhone());
 		entity.setAvatar(dto.getAvatar());
 		entity.setRoleId(2);
-		
+
 		userRepository.save(entity);
-		
+
 	}
 
 	@Override
@@ -156,13 +140,24 @@ public class UserServiceImpl implements UserService{
 		User entity = userRepository.findById(dto.getId()).get();
 		entity.setRoleId(2);
 		// NẾU NGƯỜI DÙNG NHẬP MẬT KHẨU MỚI THÌ ĐỔI LẠI MẬT KHẨU
-		if(entity.getPassword() != null && !entity.getPassword().isEmpty()) {
+		if (entity.getPassword() != null && !entity.getPassword().isEmpty()) {
 			String hashed = BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt());
 			entity.setPassword(hashed);
 		}
 		userRepository.save(entity);
-		
+
 	}
 
+	@Override
+	public UserDto checkMail(String email) {
+		// TODO Auto-generated method stub
+		User entity = userRepository.custom(email);
+
+		UserDto dto = new UserDto(entity.getEmail());
+		return dto;
+		
+		
+		
+	}
 
 }

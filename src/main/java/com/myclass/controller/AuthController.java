@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,13 +41,31 @@ public class AuthController {
 	
 	@PostMapping("register")
 	public Object register(@Valid @RequestBody UserDto dto) {
-		try {
-			userService.insert(dto);
-			return new ResponseEntity<Object>(HttpStatus.CREATED);
+		try {	
+		
+				userService.insert(dto);
+				return new ResponseEntity<Object>(HttpStatus.CREATED);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 	}
+	
+	
+	@PostMapping("kiemTraEmail")
+	public Object kiemTraMail(@Valid @RequestBody UserDto dto) {
+		try {	
+		
+				userService.checkMail(dto.getEmail());
+				return new ResponseEntity<Object>(HttpStatus.CREATED);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+	}
+
+	
 
 }

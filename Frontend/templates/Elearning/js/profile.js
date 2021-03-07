@@ -30,7 +30,26 @@ const loadProfile = () => {
 //  let url = new URL(document.location.href);
 //  let id = url.searchParams.get("id");
 
-const saveProfile = () => {
+function apiEdit(user){
+
+
+  return new Promise( axios({
+    url: `http://localhost:8080/api/admin/human/profile/${user.id}`,
+    method: "PUT",
+    data: user,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }))
+
+  
+  localStorage.setItem("USER_INFO", JSON.stringify(userProfile));
+
+  userProfile = JSON.parse(localStorage.getItem("USER_INFO"));
+}
+
+
+async function  saveProfile  () {
   // Get user infor from form
   // let password = document.getElementById("password").value;
   // let passwordConfirm = document.getElementById("passwordConfirm").value;
@@ -61,28 +80,21 @@ const saveProfile = () => {
   console.log(user);
 
   // Call api update
-  axios({
-    url: `http://localhost:8080/api/admin/human/profile/${id}`,
-    method: "PUT",
-    data: user,
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+ await apiEdit(user)
     .then((reponse) => {
       console.log({ reponse });
       // console.log(user.reponse.phone)
 
 
-      userProfile = {
-        id: reponse.data.userId,
-        fullname: reponse.data.userName,
-        email: reponse.data.email,
-        address: reponse.data.address,
-        phone: reponse.data.phone
+      // userProfile = {
+      //   id: reponse.data.userId,
+      //   fullname: reponse.data.userName,
+      //   email: reponse.data.email,
+      //   address: reponse.data.address,
+      //   phone: reponse.data.phone
 
 
-      }
+      // }
 
       console.log(id);
       console.log(fullname)
@@ -96,7 +108,7 @@ const saveProfile = () => {
       });
 
       // localStorage.getItem("USER_INFO", JSON.stringify(userProfile));
-      localStorage.setItem("USER_INFO", JSON.stringify(userProfile));
+     
 
       loadProfile();
 

@@ -134,7 +134,7 @@ function kiemTraEmail(email){
 
     }).then((resual)=>{
         //back end kiem tra chua co email nao duoc su dung , tra ve ket qua true
-        if(resual.data.kiemTraEmail ===true){
+        if(resual.data.kiemTraEmail === true){
             return true;
         }else{
             return false;

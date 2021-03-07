@@ -34,6 +34,7 @@ public class UserDto {
 		this.roleId = roleId;
 	}
 	
+	
 	public UserDto(int id, String email, String fullname, String password,
 			int roleId) {
 		super();
@@ -42,6 +43,11 @@ public class UserDto {
 		this.fullname = fullname;
 		this.password = password;
 		this.roleId = roleId;
+	}
+
+	public UserDto(String email) {
+		super();
+		this.email = email;
 	}
 	
 	
