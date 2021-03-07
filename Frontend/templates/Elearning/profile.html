@@ -82,6 +82,7 @@
                     </a>
                   </div>
                 </div>
+<<<<<<< HEAD
               </li>
               <li class="nav-item w-100">
                 <form class="input-group nav-search">
@@ -119,12 +120,15 @@
                 <a class="dropdown-item" href="#" 
                 >Đăng xuất</a>
               </div>
+=======
+>>>>>>> ae1f9a0d54584b65963d475e3d6937c1a1151aad
             </div>
           </div>
         </div>
       </nav>
     </header>
     <nav aria-label="breadcrumb">
+<<<<<<< HEAD
       <div class="container-fluid">
         <ol class="breadcrumb bg-white mb-0 py-2">
           <li class="breadcrumb-item">
@@ -140,6 +144,22 @@
         <div id="labelProfile" class="banner-content">
           <h1 id="nameProfile">a</h1>
           <h5 id="emailProfile">tienhoang1211@gmail.com</h5>
+=======
+        <div class="container-fluid">
+            <ol class="breadcrumb bg-white mb-0 py-2">
+                <li class="breadcrumb-item"><a href="#"><i class="fa fa-home mr-1"></i> Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+            </ol>
+        </div>
+    </nav>
+    <!-- BEGIN BANNER -->
+    <section class="course-banner">
+        <div class="container">
+            <div class="banner-content">
+                <h1>Nguyễn Tiến Hoàng</h1>
+                <h5>tienhoang1211@gmail.com</h5>
+            </div>
+>>>>>>> ae1f9a0d54584b65963d475e3d6937c1a1151aad
         </div>
       </div>
     </section>
@@ -175,21 +195,21 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Email</label>
-                      <input id="Email" type="text" class="form-control" readonly/> 
+                      <input type="text" class="form-control" />
                     </div>
                     <div class="form-group">
                       <label>FullName</label>
-                      <input id="FullName" type="text" class="form-control" />
+                      <input type="text" class="form-control" />
                     </div>
                     <div class="form-group">
                       <label>Address</label>
-                      <input id="Address" type="text" class="form-control" />
+                      <input type="text" class="form-control" />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Phone</label>
-                      <input id="Phone" type="text" class="form-control" />
+                      <input type="text" class="form-control" />
                     </div>
                     <div class="form-group">
                       <label>Website</label>
@@ -213,7 +233,7 @@
                     </div>
                   </div>
                   <div class="col-md-12">
-                    <button class="btn btn-outline-secondary" onclick="saveProfile()">Save</button>
+                    <button class="btn btn-outline-secondary">Save</button>
                   </div>
                 </div>
               </div>
@@ -247,22 +267,20 @@
                         type="text"
                         class="form-control"
                         readonly
-                        id="securityEmail"
+                        value="tienhoang1211@gmail.com"
                       />
                     </div>
                     <div class="form-group">
                       <label>Password</label>
-                      <input id="password" type="password" class="form-control" />
-                      <span id="passwordERR"></span>
+                      <input type="password" class="form-control" />
                     </div>
                     <div class="form-group">
                       <label>Confirm password</label>
-                      <input id="confirm" type="password" class="form-control" />
-                      <span type="danger" id="confirmERR"></span>
+                      <input type="password" class="form-control" />
                     </div>
                   </div>
                   <div class="col-md-12">
-                    <button class="btn btn-outline-secondary" onclick="changePassword()">Save</button>
+                    <button class="btn btn-outline-secondary">Save</button>
                   </div>
                 </div>
               </div>
@@ -282,11 +300,7 @@
     <script src="./lib/popper.js/popper.min.js"></script>
     <script src="./lib/bootstrap/bootstrap.min.js"></script>
     <!-- Control js -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  
     <script src="../Elearning/js/main.js"></script>
-    <script src="../Elearning/js/profile.js"></script>
-
   </body>
 </html>

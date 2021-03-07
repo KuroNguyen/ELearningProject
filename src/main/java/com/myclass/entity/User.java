@@ -26,10 +26,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "users")
 @Data
-@NoArgsConstructor
+
 @Where(clause = "active=true")
 @SQLDelete(sql = "UPDATE users SET active = false WHERE id = ?")
 public class User extends BaseEntity<String>{
+
+	
 
 	@Id
 	@Column(name = "id")
@@ -55,4 +57,19 @@ public class User extends BaseEntity<String>{
 	@OneToMany(mappedBy = "user")
 	private List<UserCourses> userCourses;
 
+	public User() {
+		super();
+	}
+	public User(int id, String email, String fullname, String password, String avatar, String phone, String address,
+			int roleId) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.fullname = fullname;
+		this.password = password;
+		this.avatar = avatar;
+		this.phone = phone;
+		this.address = address;
+		this.roleId = roleId;
+	}
 }

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.myclass.dto.AddCategoryDto;
 import com.myclass.dto.CategoryDto;
 import com.myclass.entity.Category;
 import com.myclass.repository.CategoryRepository;
@@ -78,4 +79,15 @@ public class CategoryServiceImpl implements CategoryService{
 		// kiểm tra id có tồn tại dưới database chưa
 		return categoryRepository.findById(id).isPresent();
 	}
+	public void add(AddCategoryDto entity) {
+		// thêm category vào database
+		categoryRepository.save(new Category(0, entity.getTitle(), entity.getIcon()));
+	}
+
+	public boolean checkExistByTitle(String title) {
+		// kiểm tra category có tồn tại dưới database chưa
+		if (categoryRepository.findByTitle(title) == null)
+			return false;
+		return true;
+}
 }

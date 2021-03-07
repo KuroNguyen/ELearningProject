@@ -1,5 +1,3 @@
-
-
 const login = () => {
   // Get information from form
   let email = document.getElementById("lgEmail").value;
@@ -17,7 +15,6 @@ const login = () => {
   })
     .then((resp) => {
       console.log({ resp });
-      console.log(loginModel);
       // Clear information
       document.getElementById("lgEmail").value = "";
       document.getElementById("lgPassword").value = "";
@@ -29,14 +26,7 @@ const login = () => {
       let userModel = {
         id: resp.data.userId,
         name: resp.data.userName,
-        email: resp.data.email,
-        phone: resp.data.phone,
-        address: resp.data.address
       };
-
-
-
-
       localStorage.setItem("USER_INFO", JSON.stringify(userModel));
 
       location.reload();
@@ -106,7 +96,7 @@ const loadNavBar = () => {
                 <a class="dropdown-item" href="#">
                   <i class="fa fa-camera-retro mr-1"></i>
                   <span>Photography</span>
-</a>
+                </a>
                 <a class="dropdown-item" href="#">
                   <i class="fa fa-bar-chart mr-1"></i>
                   <span>Business</span>
@@ -200,7 +190,7 @@ const loadNavBar = () => {
             ${userModel.name}
         </div>
         <div class="dropdown-menu dropdown-menu-right">
-<a class="dropdown-item" href="profile.html?id=${userModel.id}">Thông tin cá nhân</a>
+            <a class="dropdown-item" href="profile.html?id=${userModel.id}">Thông tin cá nhân</a>
             <a class="dropdown-item" href="course.html?id=${userModel.id}">Khóa học của tôi</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" onclick="logout()">Đăng xuất</a>
@@ -213,6 +203,3 @@ const loadNavBar = () => {
   navBar.innerHTML = content;
 };
 loadNavBar();
-
-// 4/3
-

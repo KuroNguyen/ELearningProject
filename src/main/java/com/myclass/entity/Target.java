@@ -24,7 +24,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "targets")
 @Data
-@NoArgsConstructor
+
 @AllArgsConstructor
 @Builder
 @ToString
@@ -43,5 +43,14 @@ public class Target extends BaseEntity<String>{
 		@ManyToOne
 		@JoinColumn(name = "course_id",insertable = false,updatable = false)
 		private Course course;
+		public Target() {
+			super();
+		}
 
+		public Target(int id, String title, int courseId) {
+			super();
+			this.id = id;
+			this.title = title;
+			this.courseId = courseId;
+		}
 }

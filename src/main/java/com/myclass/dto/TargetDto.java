@@ -17,5 +17,12 @@ public class TargetDto {
 	private int id;
 	private String title;
 	private int courseId;
+	private String course;
 	private String courseTitle;
+	public TargetDto(int id, String title, String course) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.course = course;
+	}
 }

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.myclass.dto.AddTargetDto;
 import com.myclass.dto.TargetDto;
 import com.myclass.entity.Target;
 import com.myclass.repository.TargetRepository;
@@ -92,5 +93,22 @@ public class TargetServiceImpl implements TargetService{
 	@Override
 	public Boolean isTargetIdExist(int id) {
 		return targetRepository.findById(id).isPresent();
+	}
+
+	public boolean checkExistByTitle(String title) {
+		// kiểm tra xem target title có tồn tại dưới database chưa
+		if(targetRepository.findByTitle(title) == null)
+			return false;
+		return true;
+	}
+
+	public void add(AddTargetDto entity) {
+		// thêm mới target
+		targetRepository.save(new Target(0, entity.getTitle(), entity.getCourseId()));
+	}
+
+public List<TargetDto> getMenuTargetByCourseId(int id) {
+		
+		return targetRepository.getMenuTargetByCourseId(id);
 	}
 }

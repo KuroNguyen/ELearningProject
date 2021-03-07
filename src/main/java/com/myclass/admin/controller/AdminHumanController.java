@@ -72,36 +72,6 @@ public class AdminHumanController {
 		}
 	}
 	
-	@PutMapping("profile/{id}")
-	public Object putProfile(@PathVariable int id, @RequestBody UserDto userDto) {
-		try {
-			System.out.println("Profile: " + userDto.toString());
-			if (id != userDto.getId()) {
-				return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-			}
-			userService.editProfile(userDto);
-			return new ResponseEntity<Object>(HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-		}
-	}
-	
-	@PutMapping("password/{id}")
-	public Object putPassword(@PathVariable int id, @RequestBody UserDto userDto) {
-		try {
-			System.out.println("Pasword: " + userDto.toString());
-			if (id != userDto.getId()) {
-				return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-			}
-			userService.editPassword(userDto);
-			return new ResponseEntity<Object>(HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-		}
-	}
-	
-	
-	
 	@DeleteMapping("{id}")
 	public Object delete(@PathVariable int id) {
 		try {

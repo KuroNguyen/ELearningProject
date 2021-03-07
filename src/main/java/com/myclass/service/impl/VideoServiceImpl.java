@@ -1,8 +1,12 @@
 package com.myclass.service.impl;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.myclass.dto.VideoDto;
@@ -82,4 +86,25 @@ public class VideoServiceImpl implements VideoService {
 	public void delete(int id) {
 		videoRepository.deleteById(id);
 	}
+
+public List<VideoDto> getMenuVideoByCourseId(int id) {
+		
+		return videoRepository.getMenuVideoByCourseId(id);
+	}
+
+public boolean checkProperty(String orderBy) {
+	Field[] properties = new Video().getClass().getDeclaredFields();
+	for (Field field : properties) {
+		if (field.toString().endsWith(orderBy))
+			return true;
+	}
+	return false;
+}
+
+public Page<Video> findAllPaging(String orderBy, int pageIndex, int pageSize, boolean descending) {
+	if (descending)
+		return videoRepository.findAll(PageRequest.of(pageIndex, pageSize, Sort.by(orderBy).descending()));
+
+	return videoRepository.findAll(PageRequest.of(pageIndex, pageSize, Sort.by(orderBy)));
+}
 }
