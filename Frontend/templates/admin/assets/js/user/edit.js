@@ -46,14 +46,14 @@ const loadData = () => {
       let user = response.data;
       console.log(user);
       // Set value to form data
-     
+
       console.log(user.email);
       console.log(user.fullname);
       console.log(user.password);
 
       document.getElementById("email").value = user.email;
       document.getElementById("fullname").value = user.fullname;
-   
+
       document.getElementById("avatar").value = user.avatar;
       document.getElementById("roleId").value = user.roleId;
 
@@ -136,18 +136,21 @@ const getInputForm = () => {
 
   // Call api update
   axios({
-    url: `http://localhost:8080/api/admin/user/${id}`,
+    url: `http://localhost:8080/api/admin/human/${id}`,
     method: "PUT",
     data: user,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   })
     .then((reponse) => {
       console.log({ reponse });
       swal("Thành Công", "Cập nhật thành công", "success").then(() => {
-        document.location.href = "/templates/admin/user/index.html";
+        document.location.href = "../../../../admin/user/index.html";
       });
     })
     .catch((error) => {
-      console.log(error);
+      console.log({ error });
       swal("Thất bại", "Thêm mới thất bại!", "error");
     });
 };

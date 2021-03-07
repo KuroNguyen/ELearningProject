@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.myclass.dto.AddUserCourseDto;
 import com.myclass.dto.PasswordDto;
 import com.myclass.dto.SignUpDto;
+import com.myclass.dto.UserDto;
 import com.myclass.service.CourseService;
 import com.myclass.service.FileService;
 import com.myclass.service.CourseService;
@@ -29,7 +30,7 @@ import com.myclass.service.UserService;
 import io.jsonwebtoken.Jwts;
 
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("api/human")
 public class UserController {
 	private UserService userService;
 	private CourseService courseService;
@@ -218,5 +219,33 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+	}
+	
+	@PutMapping("profile/{id}")
+	public Object putProfile(@PathVariable int id, @RequestBody UserDto userDto) {
+		try {
+			System.out.println("Profile: " + userDto.toString());
+			if (id != userDto.getId()) {
+				return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+			}
+			userService.editProfile(userDto);
+			return new ResponseEntity<Object>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@PutMapping("password/{id}")
+	public Object putPassword(@PathVariable int id, @RequestBody UserDto userDto) {
+		try {
+			System.out.println("Pasword: " + userDto.toString());
+			if (id != userDto.getId()) {
+				return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+			}
+			userService.editPassword(userDto);
+			return new ResponseEntity<Object>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+		}
 	}
 }

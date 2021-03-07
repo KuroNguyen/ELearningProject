@@ -200,7 +200,7 @@ public class AdminCourseController {
 
 			return new ResponseEntity<Object>(HttpStatus.OK);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 	}

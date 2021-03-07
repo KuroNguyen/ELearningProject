@@ -9,26 +9,24 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 /**
- * Author: Nguyen Chanh Truc
- * Created: Jan 31, 2021	
+ * Author: Nguyen Chanh Truc Created: Jan 31, 2021
  */
-public class SpringSecurityAuditorAware implements AuditorAware<String>{
+public class SpringSecurityAuditorAware implements AuditorAware<String> {
 
 	@Override
 	public Optional<String> getCurrentAuditor() {
-		
-//		return Optional.ofNullable(SecurityContextHolder.getContext())
-//        .map(SecurityContext::getAuthentication)
-//        .filter(Authentication::isAuthenticated)
-//        .map(Authentication::getPrincipal)
-//        .map(UserDetails.class::cast)
-//        .map(UserDetails::getUsername);
-		
-		return Optional.ofNullable("Kindson").filter(s -> !s.isEmpty());
+
+//		SecurityContextHolder contextHolder = (SecurityContextHolder) SecurityContextHolder.getContext();
+//		SecurityContext securityContext = SecurityContextHolder.getContext();
+//		if (!securityContext.getAuthentication().isAuthenticated()) {
+			return Optional.ofNullable("Anonymous").filter(s -> !s.isEmpty());
+//		}
+//
+//		return Optional.ofNullable(SecurityContextHolder.getContext()).map(SecurityContext::getAuthentication)
+//				.filter(Authentication::isAuthenticated).map(Authentication::getPrincipal).map(UserDetails.class::cast)
+//				.map(UserDetails::getUsername);
+
 	}
-
-
 
 }

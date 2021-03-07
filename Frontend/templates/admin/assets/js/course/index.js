@@ -1,23 +1,26 @@
 function loadCourse() {
-    axios({
-        url: 'http://localhost:8080/api/admin/course',
-        method: 'GET',
-        headers: {
-            Authorization: 'Bearer ' + localStorage.getItem("USER_TOKEN")
-        }
-    })
-        .then(function (resp) {
-            //  Lấy ra mảng role
-            let arrCourse = resp.data;
-            // Tạo danh sách thẻ option
-            let tableCourse = document.getElementById("tableCourse").getElementsByTagName("tbody")[0];
-            let courseRow = "";
-            for (let courseDto of arrCourse) {
-                courseRow += `      <tr>
+  axios({
+    url: "http://localhost:8080/api/admin/course",
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("USER_TOKEN"),
+    },
+  })
+    .then(function (resp) {
+      //  Lấy ra mảng role
+      let arrCourse = resp.data;
+      console.log({ resp });
+      // Tạo danh sách thẻ option
+      let tableCourse = document
+        .getElementById("tableCourse")
+        .getElementsByTagName("tbody")[0];
+      let courseRow = "";
+      for (let courseDto of arrCourse) {
+        courseRow += `<tr>
                 <th>${courseDto.id}</th>
                 <td>${courseDto.title}</td>
-                <td><img src="http://localhost:8080/course/${courseDto.image}"></td>
-                <td>${courseDto.lectureCount}</td>
+                <td><img height="50" class="p-1 border" src="${courseDto.image}"></td>
+                <td>${courseDto.lecturesCount}</td>
                 <td>${courseDto.price}</td>
                 
                 <td>
@@ -27,38 +30,36 @@ function loadCourse() {
             </tr>
                 
                 `;
-            }
+      }
 
-            tableCourse.innerHTML = courseRow;
-        })
-        .catch(function (err) {
-            console.log(err.response);
-
-        })
+      tableCourse.innerHTML = courseRow;
+    })
+    .catch(function (err) {
+      console.log(err.response);
+    });
 }
 loadCourse();
 
 function deleteCourse(id) {
-
-    axios({
-        url: `http://localhost:8080/api/admin/course/${id}`,
-        method: 'DELETE',
-        headers: {
-            Authorization: 'Bearer ' + localStorage.getItem("USER_TOKEN")
-        }
+  axios({
+    url: `http://localhost:8080/api/admin/course/${id}`,
+    method: "DELETE",
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("USER_TOKEN"),
+    },
+  })
+    .then(function (resp) {
+      //Lấy ra mảng role
+      loadCourse();
+      console.log("xóa thành công");
     })
-        .then(function (resp) {
-            //Lấy ra mảng role
-            loadCourse();
-            console.log("xóa thành công");
-        })
-        .catch(function (err) {
-            console.log(err.response);
-        })
+    .catch(function (err) {
+      console.log(err.response);
+    });
 }
 
 // xóa token
 function logout() {
-    localStorage.removeItem('USER_TOKEN');
-    location.replace("/login.html");
+  localStorage.removeItem("USER_TOKEN");
+  location.replace("/login.html");
 }

@@ -9,16 +9,23 @@ import com.myclass.dto.UserLoginDto;
 
 public interface UserService {
 	void insert(UserDto dto);
+
 	List<UserDto> getAll();
+
 	UserDto getById(int id);
+
 	UserDto getByEmail(String email);
+
 	void edit(UserDto dto);
+
 	void delete(int id);
+
 	boolean checkExistById(int userId);
-<<<<<<< HEAD
+
 	UserDto checkMail(String email);
-=======
+
 	void signUp(SignUpDto dto);
+
 	boolean checkExistByEmail(String email);
 
 	boolean checkExistByPhone(String phone);
@@ -34,10 +41,16 @@ public interface UserService {
 	String getAvatarById(int id);
 
 	void editAvatarById(int id, String image);
+
 	String getAvatarByEmail(String email);
+
 	UserInfoDto getInfoByEmail(String email);
 
 	void editAvatarByEmail(String email, String upload);
+	
+	// error 
+	void editProfile(UserDto dto);
+	
+	void editPassword(UserDto dto);
 
->>>>>>> ae1f9a0d54584b65963d475e3d6937c1a1151aad
 }

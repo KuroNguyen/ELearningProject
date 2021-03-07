@@ -79,7 +79,6 @@ public class AdminVideoController {
 	@PutMapping("{id}")
 	public Object put(@PathVariable int id, @RequestBody VideoDto videoDto) {
 		try {
-			System.out.println("Test: " + videoDto.toString());
 			if (id != videoDto.getId()) {
 				return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 			}
@@ -96,6 +95,9 @@ public class AdminVideoController {
 	@DeleteMapping("{id}")
 	public Object delete(@PathVariable int id) {
 		try {
+			if (videoService.getById(id) == null) {
+				return new ResponseEntity<Object>(NOT_EXIST,HttpStatus.BAD_REQUEST);
+			}
 			videoService.delete(id);
 			return new ResponseEntity<Object>(HttpStatus.OK);
 		} catch (Exception e) {

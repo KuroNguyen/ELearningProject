@@ -79,7 +79,7 @@ const addVideo = () => {
     .then((resp) => {
       console.log(resp);
       swal("Thông báo!", "Thêm mới thành công!", "success").then((value) => {
-        window.location.href = "../../../../admin/target/target-list.html";
+        window.location.href = "../../../../admin/video/video-list.html";
       });
     })
     .catch((error) => {

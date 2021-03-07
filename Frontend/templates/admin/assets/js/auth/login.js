@@ -22,17 +22,17 @@ const login = () => {
       // Store token into localStorage
       localStorage.setItem("USER_TOKEN", resp.data);
 
-      document.location.href = "../role/role-index.html";
+      document.location.href = "../user/index.html";
     })
     .catch((error) => {
-      console.log({...error});
+      console.log({ ...error });
     });
 };
 
-function checkAuth(){
-  let token = localStorage.getItem('USER_TOKEN');
-  if(token != null){
-      document.location.href="../role/role-index.html"
+function checkAuth() {
+  let token = localStorage.getItem("USER_TOKEN");
+  if (token != null) {
+    document.location.href = "../role/role-index.html";
   }
 }
 

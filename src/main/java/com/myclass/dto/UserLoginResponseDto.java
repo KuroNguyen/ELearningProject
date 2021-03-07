@@ -5,8 +5,10 @@ package com.myclass.dto;
  */
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class UserLoginResponseDto {
 	private String token;
 	private int userId;

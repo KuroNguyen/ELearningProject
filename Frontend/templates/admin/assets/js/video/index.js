@@ -65,7 +65,7 @@ const deleteVideo = (id) => {
       })
         .then((resp) => {
           swal("Thành công", "Xóa thành công!", "success").then(() => {
-            loadRoles();
+            loadVideos();
           });
         })
         .catch((error) => {

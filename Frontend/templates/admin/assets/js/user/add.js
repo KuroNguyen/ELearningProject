@@ -15,7 +15,7 @@ const loadRole = () => {
     .then((response) => {
       let roles = response.data;
       console.log(roles);
-    
+
       fullname = response.data.fullname;
 
       roles.forEach((role) => {
@@ -29,7 +29,6 @@ const loadRole = () => {
 };
 loadRole();
 
-
 const getInputForm = () => {
   // Get user infor from form
   let password = document.getElementById("password").value;
@@ -38,8 +37,6 @@ const getInputForm = () => {
     swal("Thất bại!", "Mật khẩu xác nhận không đúng", "error");
     return;
   }
-
-
 
   let email = document.getElementById("email").value;
   let fullname = document.getElementById("fullname").value;
@@ -113,7 +110,7 @@ const getInputForm = () => {
       });
     })
     .catch((error) => {
-      console.log(error);
+      console.log({ error });
       swal("Thất bại", "Thêm mới thất bại!", "error");
     });
 };

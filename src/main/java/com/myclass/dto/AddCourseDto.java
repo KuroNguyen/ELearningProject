@@ -11,8 +11,7 @@ import lombok.Data;
 
 @Data
 public class AddCourseDto {
-	//title phải là chữ và từ 4 tới 50 ký tự
-	@Pattern(regexp = "^[a-zA-Z ]+{4,50}$", message = "Title must is words and contain from 4 to 50 characters.")
+
 	private String title;
 	private String image;
 	private int lecturesCount;

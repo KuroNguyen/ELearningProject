@@ -23,6 +23,7 @@ import com.myclass.service.UserService;
 @RestController
 @RequestMapping("api/admin/human")
 public class AdminHumanController {
+	
 	private UserService userService;
 	public AdminHumanController(UserService userService) {
 		this.userService = userService;
@@ -54,6 +55,7 @@ public class AdminHumanController {
 			userService.insert(userDto);
 			return new ResponseEntity<Object>(HttpStatus.CREATED);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 		}
 	}

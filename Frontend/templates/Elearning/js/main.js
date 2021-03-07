@@ -14,7 +14,7 @@ const login = () => {
     data: loginModel,
   })
     .then((resp) => {
-      console.log({ resp });
+      console.log(resp);
       // Clear information
       document.getElementById("lgEmail").value = "";
       document.getElementById("lgPassword").value = "";

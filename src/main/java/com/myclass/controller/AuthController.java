@@ -30,7 +30,9 @@ public class AuthController {
 	@PostMapping("login")
 	public Object post(@Valid @RequestBody LoginDto dto) {
 		try {
+			System.out.println(dto.toString());
 			UserLoginResponseDto userLoginResponseDto = authService.userLogin(dto);
+			System.out.println(userLoginResponseDto.toString());
 			// Return user information and token 			
 			return new ResponseEntity<Object>(userLoginResponseDto, HttpStatus.OK);
 		} catch (Exception e) {

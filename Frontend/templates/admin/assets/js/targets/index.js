@@ -22,7 +22,7 @@ const loadTargets = () => {
         content += `<tr>
       <td>${i}</td>
       <td>${target.title}</td>
-      <td>${target.courseTitle}</td>
+      <td>${target.course}</td>
       <td>
           <a 
               class="btn btn-sm btn-info btn-round py-1 font-weight-bold"
