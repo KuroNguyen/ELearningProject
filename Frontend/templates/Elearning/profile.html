@@ -236,14 +236,26 @@
                     <div class="picture-wapper">
                       <div class="picture-img">
                         <img
+                          class="img-fluid"
                           src="https://i.udemycdn.com/user/200_H/anonymous_3.png"
                           alt=""
+                          id="imgAvatar"
                         />
                       </div>
                     </div>
-                    <input type="file" class="form-control" />
-                    <input type="hidden" name="avatar" />
-                    <button class="btn btn-outline-secondary mt-3">Save</button>
+                    <input
+                      type="file"
+                      class="form-control"
+                      onchange="uploadAvatar()"
+                      id="avatar"
+                    />
+                    <input type="hidden" name="avatar" id="imgUrl" />
+                    <button
+                      class="btn btn-outline-secondary mt-3"
+                      onclick="saveProfile()"
+                    >
+                      Save
+                    </button>
                   </div>
                 </div>
               </div>
@@ -262,11 +274,20 @@
                     <div class="form-group">
                       <label>Password</label>
                       <input
-                        id="password"
+                        id="oldPassword"
                         type="password"
                         class="form-control"
                       />
-                      <span id="passwordERR"></span>
+                      <span class="text-danger" id="passwordERR"></span>
+                    </div>
+                    <div class="form-group">
+                      <label>New password</label>
+                      <input
+                        id="newPassword"
+                        type="password"
+                        class="form-control"
+                      />
+                      <span class="text-danger" id="newPasswordERR"></span>
                     </div>
                     <div class="form-group">
                       <label>Confirm password</label>
@@ -275,7 +296,7 @@
                         type="password"
                         class="form-control"
                       />
-                      <span type="danger" id="confirmERR"></span>
+                      <span class="text-danger" id="confirmERR"></span>
                     </div>
                   </div>
                   <div class="col-md-12">

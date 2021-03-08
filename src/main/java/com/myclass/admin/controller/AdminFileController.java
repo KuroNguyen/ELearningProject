@@ -16,8 +16,8 @@ import com.myclass.service.FileService;
 @RestController
 @RequestMapping("api/admin/file")
 public class AdminFileController {
+	
 	private FileService fileService;
-
 	public AdminFileController(FileService fileService) {
 		this.fileService = fileService;
 	}

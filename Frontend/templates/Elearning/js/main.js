@@ -203,3 +203,16 @@ const loadNavBar = () => {
   navBar.innerHTML = content;
 };
 loadNavBar();
+
+const addToCart = (courseModel) => {
+  // Get cart from localStorage
+  let cart = JSON.parse(localStorage.getItem("CART"));
+
+  // Append
+  if (cart) {
+    cart.push(courseModel);
+  } else {
+    cart = [];
+    cart.push(courseModel);
+  }
+};

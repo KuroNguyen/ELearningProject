@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.myclass.service.FileService;
 
 @RestController
-@RequestMapping("apt/file")
+@RequestMapping("api/file")
 public class FileController {
 	private FileService fileService;
 
