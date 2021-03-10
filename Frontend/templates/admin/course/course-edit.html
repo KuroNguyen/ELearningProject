@@ -20,17 +20,17 @@
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" />
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/plugins/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/plugins/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/plugins/font-awesome/css/font-awesome.min.css" />
     <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/icon/themify-icons/themify-icons.css" />
     <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="assets/icon/icofont/css/icofont.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/icon/icofont/css/icofont.css" />
     <!-- feather Awesome -->
-    <link rel="stylesheet" type="text/css" href="assets/icon/feather/css/feather.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/icon/feather/css/feather.css" />
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/jquery.mCustomScrollbar.css" />
 </head>
 
 <body>
@@ -45,7 +45,7 @@
                             <i class="feather icon-menu"></i>
                         </a>
                         <a href='#'>
-                            <img class="img-fluid" src='assets/images/logo.png' alt="Theme-Logo">
+                            <img class="img-fluid" src='../assets/images/logo.png' alt="Theme-Logo">
                         </a>
                         <a class="mobile-options">
                             <i class="feather icon-more-horizontal"></i>
@@ -86,7 +86,7 @@
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <img src="assets/images/avatar-4.jpg" class="img-radius"
+                                        <img src="../assets/images/avatar-4.jpg" class="img-radius"
                                             alt="User-Profile-Image" id="profileImage">
                                         <span id="fullname">John Doe</span>
                                         <i class="feather icon-chevron-down"></i>
@@ -118,7 +118,7 @@
             </nav>
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-                    <nav class="pcoded-navbar">
+                    <nav class="pcoded-navbar" id="sideBar">
                         <div class="pcoded-inner-navbar main-menu">
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
@@ -176,7 +176,8 @@
                                             <div class="page-header-breadcrumb">
                                                 <ul class="breadcrumb-title">
                                                     <li class="breadcrumb-item">
-                                                        <a href="/admin"> <i class="feather icon-home"></i> Trang chủ</a>
+                                                        <a href="/admin"> <i class="feather icon-home"></i> Trang
+                                                            chủ</a>
                                                     </li>
                                                     <li class="breadcrumb-item"><a href="#!">Thêm mới khóa học</a></li>
                                                 </ul>
@@ -195,20 +196,23 @@
                                                                     <label>Tiêu đề</label>
                                                                     <input type="text" id="title"
                                                                         class="form-control" />
+                                                                        <span class="text-danger" id="titleError"></span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Số bài học</label>
                                                                     <input type="number" id="lecturesCount"
                                                                         class="form-control" />
+                                                                        <span class="text-danger" id="lecturesCountError"></span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Số giờ học</label>
                                                                     <input type="number" id="hourCount"
                                                                         class="form-control" />
+                                                                        <span class="text-danger" id="hourCountError"></span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Danh mục</label>
-                                                                    <select id="categoryId" class="form-control">
+                                                                    <select name="categoryId" class="form-control"id="categoryId">
                                                                         <option>Frontend</option>
                                                                         <option>Backend</option>
                                                                         <option>Mobile</option>
@@ -218,36 +222,43 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label>Giá bán</label>
-                                                                    <input type="text" id="price"
+                                                                    <input name="price"type="text" id="price"
                                                                         class="form-control" />
+                                                                        <span class="text-danger" id="priceError"></span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Giảm giá (%)</label>
-                                                                    <input type="number" id="discount"
+                                                                    <input name="discount" type="number" id="discount"
                                                                         class="form-control" />
+                                                                        <span class="text-danger" id="discountError"></span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Mô tả</label>
-                                                                    <input  type="text" id="description"
-                                                                            class="form-control" />
+                                                                    <input type="text" name="description"
+                                                                        class="form-control" id="description"/>
+                                                                        <span class="text-danger" id="descriptionError"></span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Hình đại diện</label>
-                                                                    <input type="file" id="image"
-                                                                        class="form-control" />
+                                                                    <span hidden id="imageUrl"></span>
+                                                                    <input type="file" name="image" class="form-control"
+                                                                        onchange="uploadImage()" id="image" />
+                                                                        <span class="text-danger" id="imageError"></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12">
                                                                 <label>Nội dung</label>
                                                                 <textarea id="content" class="form-control"
                                                                     rows="5"></textarea>
+                                                                    <span class="text-danger" id="contentError"></span>
                                                             </div>
                                                             <div class="col-12 mt-3">
                                                                 <div class="form-group">
                                                                     <button type="button" class="btn btn-primary m-b-0"
                                                                         onclick="editCourse()">Lưu lại</button>
                                                                     <a href="./course-list.html"
-                                                                        class="btn btn-secondary text-white">Quay lại</a>
+                                                                        class="btn btn-secondary text-white">Quay
+                                                                        lại</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -282,7 +293,7 @@
     <script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
     <script src="http://cdn.ckeditor.com/4.4.7/standard-all/adapters/jquery.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="assets/js/course/edit.js"></script>
+    <script src="../assets/js/course/edit.js"></script>
 </body>
 
 </html>
