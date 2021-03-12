@@ -235,18 +235,18 @@ function addUserCourse() {
         },
       })
         .then(function (resp) {
-          console.log("Thêm user course thành công nhé");
+          console.log("Thêm user course thành công!");
         })
         .catch(function (err) {
           console.log();
-          swal("Sorry", "Thêm Mới Thất Bại!", "error");
+          swal("Sorry", "Thêm Mới Thất Bại!", "Lỗi");
         });
 
       /////////
     })
     .catch(function (err) {
       console.log(courseDto);
-      swal("Sorry", "Thêm Mới Thất Bại!", "error");
+      swal("Sorry", "Thêm Mới Thất Bại!", "Lỗi");
     });
 }
 

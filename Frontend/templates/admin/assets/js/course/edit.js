@@ -57,13 +57,13 @@ function saveImage() {
     })
         .then(function (resp) {
             console.log(resp.data);
+            document.getElementById("imageUrl").value = resp.data;
         })
         .catch(function (err) {
-            console.log(err)
-        })
+            console.log(err);
+        });
 
 }
-
 
 
 
@@ -104,7 +104,7 @@ function editCourse() {
 
         // gọi api thêm
         axios({
-            url: `http://localhost:8080/api/admin/course/${idCourse}`,
+            url: `http://localhost:8080/api/admin/userCourse/${idCourse}`,
             method: 'PUT',
             data: courseDto,
             headers: {
