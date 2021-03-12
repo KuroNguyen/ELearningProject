@@ -37,7 +37,14 @@ public class UserServiceImpl implements UserService {
 			// GỌI PHƯƠNG THỨC TRUY VẤN LẤY ROLE THEO id
 			// (roleId là khóa ngoại lưu trong bảng user)
 			Role role = roleRepository.findById(entity.getRoleId()).get();
-			UserDto dto = new UserDto(entity.getId(), entity.getEmail(), entity.getFullname(), entity.getPassword(),
+			UserDto dto = new UserDto(
+					entity.getId(), 
+					entity.getEmail(), 
+					entity.getFullname(), 
+					entity.getPassword(),
+					entity.getAvatar(),
+					entity.getPhone(),
+					entity.getAddress(),
 					entity.getRoleId());
 			dto.setRoleDesc(role.getDescription());
 

@@ -106,7 +106,7 @@ public class UserController {
 				return new ResponseEntity<Object>(emailIsNotExist, HttpStatus.BAD_REQUEST);
 
 			// check password cũ gửi lên có đúng hay không
-			if (userService.checkPassword(dto.getEmail(), dto.getOldPassword()))
+			if (!userService.checkPassword(dto.getEmail(), dto.getOldPassword()))
 				return new ResponseEntity<Object>(passwrodIsNotCorrect, HttpStatus.BAD_REQUEST);
 
 			// thay đổi password trong database thành password mới

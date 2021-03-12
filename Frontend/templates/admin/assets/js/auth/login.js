@@ -20,7 +20,14 @@ const login = () => {
       document.getElementById("lgPassword").value = "";
 
       // Store token into localStorage
-      localStorage.setItem("USER_TOKEN", resp.data);
+      localStorage.setItem("USER_TOKEN", resp.data.token);
+
+      // Store user information into localStorage
+      let userModel = {
+        id: resp.data.userId,
+        name: resp.data.userName,
+      };
+      localStorage.setItem("USER_INFO", JSON.stringify(userModel));
 
       document.location.href = "../user/index.html";
     })
@@ -32,7 +39,7 @@ const login = () => {
 function checkAuth() {
   let token = localStorage.getItem("USER_TOKEN");
   if (token != null) {
-    document.location.href = "../role/role-index.html";
+    document.location.href = "../course/course-list.html";
   }
 }
 

@@ -52,6 +52,10 @@ public class AdminHumanController {
 	@PostMapping("")
 	public Object post(@RequestBody UserDto userDto) {
 		try {
+			if (userService.checkExistByEmail(userDto.getEmail())) {
+				return new ResponseEntity<Object>("Email is already exist",HttpStatus.BAD_REQUEST);
+			}
+			
 			userService.insert(userDto);
 			return new ResponseEntity<Object>(HttpStatus.CREATED);
 		} catch (Exception e) {

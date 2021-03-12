@@ -66,7 +66,6 @@ function uploadImage() {
     });
 }
 
-var idUser = document.getElementById("userId").value;
 var roleId = document.getElementById("roleId").value;
 var lastCourseId = document.getElementById("lastCourseId").value;
 
@@ -145,7 +144,7 @@ function addCourse() {
   }
 
   if (flag === true) {
-    // tạo user
+    // tạo course
     let courseDto = {
       title: titleInput,
       image: document.getElementById("imageUrl").value,
@@ -155,7 +154,7 @@ function addCourse() {
       categoryId: cateInput,
       content: contentInput,
       description: descriptionInput,
-      discount: discountInput,
+      promotionPrice: discountInput,
       lectureCount: lecturesCountInput,
     };
     console.log(courseDto);
@@ -172,7 +171,7 @@ function addCourse() {
         console.log("Thành công! " + resp.data);
         swal("Good job!", "Thêm Mới Thành Công!", "success");
         // saveImage();
-
+        document.location.href = "../../admin/course/course-list.html";
         // addUserCourse();
       })
       .catch(function (err) {

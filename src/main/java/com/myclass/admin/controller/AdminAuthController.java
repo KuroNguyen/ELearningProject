@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myclass.dto.LoginDto;
+import com.myclass.dto.UserLoginResponseDto;
 import com.myclass.service.AuthService;
 
 @RestController
 @RequestMapping("api/admin/auth")
 public class AdminAuthController {
 	private AuthService authService;
-	
+
 	public AdminAuthController(AuthService authService) {
 		this.authService = authService;
 	}
@@ -24,11 +25,12 @@ public class AdminAuthController {
 	@PostMapping("login")
 	public Object post(@Valid @RequestBody LoginDto dto) {
 		try {
-			String token = authService.login(dto);
-			return new ResponseEntity<Object>(token, HttpStatus.OK);
+			UserLoginResponseDto userLoginResponseDto = authService.userLogin(dto);
+			// Return user information and token
+			return new ResponseEntity<Object>(userLoginResponseDto, HttpStatus.OK);
 		} catch (Exception e) {
-			e.printStackTrace();		
+			e.printStackTrace();
 		}
-		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);	
+		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 	}
 }

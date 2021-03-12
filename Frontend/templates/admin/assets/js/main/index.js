@@ -22,6 +22,8 @@ function logout() {
 const loadNavBar = () => {
   // Reference navBar from DOM
   let navBar = document.getElementById("navBar");
+  // Get loginUserModel from localStorage
+  let userLoginModel = JSON.parse(localStorage.getItem("USER_INFO"));
   // Set navBar content
   let content = `<div class="navbar-wrapper">
     <div class="navbar-logo">
@@ -84,7 +86,7 @@ const loadNavBar = () => {
                 class="img-radius"
                 alt="User-Profile-Image"
               />
-              <span>Kuro Nguyen</span>
+              <span>${userLoginModel.name}</span>
               <i class="feather icon-chevron-down"></i>
             </div>
             <ul

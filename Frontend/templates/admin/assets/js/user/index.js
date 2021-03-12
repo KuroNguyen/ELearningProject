@@ -14,7 +14,8 @@ const loadData = () => {
   })
     .then(function (response) {
       let users = response.data;
-      let i =1;
+      console.log(users);
+      let i = 1;
       users.forEach((user) => {
         content += `
                     <tr>
@@ -24,8 +25,12 @@ const loadData = () => {
                         <td>${user.avatar}</td>
                         <td>${user.roleDesc}</td>
                         <td class="w-25">
-                            <a href="edit.html?id=${user.id}" class="btn btn-sm btn-info">Sửa</a>
-                            <a href="javascript:void(0)" onclick="deleteUser(${user.id})" class="btn btn-sm btn-danger">Xóa</a>
+                            <a href="edit.html?id=${
+                              user.id
+                            }" class="btn btn-sm btn-info">Sửa</a>
+                            <a href="javascript:void(0)" onclick="deleteUser(${
+                              user.id
+                            })" class="btn btn-sm btn-danger">Xóa</a>
                         </td>
                     </tr>
                 `;

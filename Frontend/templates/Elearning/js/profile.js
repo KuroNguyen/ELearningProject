@@ -165,7 +165,7 @@ const changePassword = () => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.log({ error });
 
         swal("Cập nhật password thất bại", "Thêm mới thất bại!", "error");
       });
