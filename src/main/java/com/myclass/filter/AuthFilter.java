@@ -35,12 +35,22 @@ public class AuthFilter extends BasicAuthenticationFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		
-		if(request.getServletPath().startsWith("/api/admin/user")) {
+//		if(request.getServletPath().startsWith("/api/admin/user")) {
+//			chain.doFilter(request, response);
+//			return;
+//		}
+		
+		if (request.getServletPath().startsWith("/api/course")) {
 			chain.doFilter(request, response);
 			return;
 		}
 		
-		if(request.getServletPath().startsWith("/api/auth/register")) {
+		if (request.getServletPath().startsWith("/api/category")) {
+			chain.doFilter(request, response);
+			return;
+		}
+		
+		if (request.getServletPath().startsWith("/api/auth/register")) {
 			chain.doFilter(request, response);
 			return;
 		}

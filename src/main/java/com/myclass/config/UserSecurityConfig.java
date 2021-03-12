@@ -11,6 +11,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.myclass.filter.AuthFilter;
+
 @Configuration
 @EnableWebSecurity
 @Order(2)
@@ -30,8 +32,10 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.csrf().disable() // turn off fraudulent prevention
 				.antMatcher("/api/**").authorizeRequests()
-				.antMatchers("/api/user").authenticated();
-
+				.antMatchers("/api/course").permitAll()
+				.antMatchers("/api/user","/api/course/buy").authenticated();
+				
+		http.addFilter(new AuthFilter(authenticationManager(), userDetailsService));
 		// Not use session
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}

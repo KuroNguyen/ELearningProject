@@ -5,9 +5,11 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.myclass.dto.AddCourseDto;
 import com.myclass.dto.AddUserCourseDto;
+import com.myclass.dto.BuyCourseDto;
 import com.myclass.dto.CourseDetailDto;
 import com.myclass.dto.CourseDto;
 import com.myclass.dto.MenuCourseDto;
@@ -15,11 +17,12 @@ import com.myclass.dto.UserCourseDto;
 import com.myclass.entity.Course;
 
 /**
- * Author: Nguyen Chanh Truc
- * Created: Feb 9, 2021	
+ * Author: Nguyen Chanh Truc Created: Feb 9, 2021
  */
 public interface CourseService {
 	List<CourseDto> getAllWithCategory();
+
+	List<CourseDto> getAllByCategoryId(int id);
 
 	void add(AddCourseDto entity);
 
@@ -56,4 +59,6 @@ public interface CourseService {
 	List<UserCourseDto> getAllUserByCourseId(int courseId);
 
 	void addCourse(AddUserCourseDto dto);
+
+	void buyCourse(BuyCourseDto dto, UserDetails userDetails);
 }

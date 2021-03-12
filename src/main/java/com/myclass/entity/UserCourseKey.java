@@ -5,39 +5,46 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Embeddable
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserCourseKey implements Serializable{
 
 	@Column(name = "user_id")
-	int userId;
+	public int userId;
 	
 	@Column(name = "course_id")
-	int courseId;
+	public int courseId;
 
-	public int getUserId() {
-		return userId;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserCourseKey other = (UserCourseKey) obj;
+		if (courseId != other.courseId)
+			return false;
+		if (userId != other.userId)
+			return false;
+		return true;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + courseId;
+		result = prime * result + userId;
+		return result;
 	}
 
-	public int getCourseId() {
-		return courseId;
-	}
-
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
-	}
-
-	public UserCourseKey() {
-		super();
-	}
-
-	public UserCourseKey(int userId, int courseId) {
-		super();
-		this.userId = userId;
-		this.courseId = courseId;
-	}
 	
 }

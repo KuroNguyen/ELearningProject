@@ -24,7 +24,7 @@
         id="navBar"
       ></nav>
     </header>
-    <nav aria-label="breadcrumb">
+    <!-- <nav aria-label="breadcrumb">
       <div class="container-fluid">
         <ol class="breadcrumb bg-white mb-0 py-2">
           <li class="breadcrumb-item">
@@ -34,7 +34,7 @@
           <li class="breadcrumb-item active" aria-current="page">Python</li>
         </ol>
       </div>
-    </nav>
+    </nav> -->
     <!-- BEGIN BANNER -->
     <section class="course-banner">
       <div class="container">
@@ -47,7 +47,11 @@
         <div class="row">
           <div class="col-md-8">
             <!-- BEGIN CART -->
-            <ul class="course-desc-items" style="list-style-type: none">
+            <ul
+              class="course-desc-items"
+              style="list-style-type: none"
+              id="itemList"
+            >
               <li style="border-style: solid; margin: 1em">
                 <div class="row">
                   <div class="col-md-2">
@@ -136,5 +140,23 @@
         </div>
       </div>
     </section>
+
+    <footer class="py-4 mt-4 text-center border-top">
+      <span>Copyright © 2019 Cybersoft, Inc.</span>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="./lib/jquery/jquery.slim.min.js"></script>
+    <script src="./lib/popper.js/popper.min.js"></script>
+    <script src="./lib/bootstrap/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../admin/assets/js/auth/signUp.js"></script>
+    <script src="../admin/assets/js/user/login.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Control js -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../Elearning/js/main.js"></script>
+    <script src="../Elearning/js/cart.js"></script>
   </body>
 </html>

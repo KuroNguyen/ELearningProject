@@ -1,6 +1,7 @@
 package com.myclass.service.impl;
 
 import java.lang.reflect.Field;
+import java.security.Principal;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,11 +11,17 @@ import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.common.base.Optional;
 import com.myclass.dto.AddCourseDto;
 import com.myclass.dto.AddUserCourseDto;
+import com.myclass.dto.BuyCourseDto;
 import com.myclass.dto.CourseDetailDto;
 import com.myclass.dto.CourseDto;
 import com.myclass.dto.MenuCourseDto;
@@ -284,5 +291,29 @@ public class CourseServiceImpl implements CourseService {
 		dto.setTimeCount(entity.getTimeCount());
 		dto.setUrl(entity.getUrl());
 		return dto;
+	}
+
+	@Override
+	public void buyCourse(BuyCourseDto dto, UserDetails userDetails) {
+		// Get current user email from securityHolderContext
+		String userEmail = userDetails.getUsername();
+		// Attach user for each course in BuyCourseDto
+		dto.getCourseDto().stream()
+			.forEach(courseDto -> {
+				UserCourses entity = new UserCourses();
+				UserCourseKey key = new UserCourseKey();
+				entity.setId(key);
+				entity.setCourse(courseRepository.findById(courseDto.getId()).get());
+				entity.setUser(userRepository.findByEmail(userEmail));
+				
+				userCourseRepository.save(entity);
+			});
+		
+		
+	}
+
+	@Override
+	public List<CourseDto> getAllByCategoryId(int id) {
+		return courseRepository.getAllByCategoryId(id);
 	}
 }

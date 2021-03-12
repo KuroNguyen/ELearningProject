@@ -20,12 +20,12 @@ public class SpringSecurityAuditorAware implements AuditorAware<String> {
 //		SecurityContextHolder contextHolder = (SecurityContextHolder) SecurityContextHolder.getContext();
 //		SecurityContext securityContext = SecurityContextHolder.getContext();
 //		if (!securityContext.getAuthentication().isAuthenticated()) {
-			return Optional.ofNullable("Anonymous").filter(s -> !s.isEmpty());
+//			return Optional.ofNullable("Anonymous").filter(s -> !s.isEmpty());
 //		}
 //
-//		return Optional.ofNullable(SecurityContextHolder.getContext()).map(SecurityContext::getAuthentication)
-//				.filter(Authentication::isAuthenticated).map(Authentication::getPrincipal).map(UserDetails.class::cast)
-//				.map(UserDetails::getUsername);
+		return Optional.ofNullable(SecurityContextHolder.getContext()).map(SecurityContext::getAuthentication)
+				.filter(Authentication::isAuthenticated).map(Authentication::getPrincipal).map(UserDetails.class::cast)
+				.map(UserDetails::getUsername);
 
 	}
 

@@ -49,16 +49,6 @@ const logout = () => {
   location.reload();
 };
 
-const loadCategory = () => {
-  axios({
-    url: `http://localhost:8080/api/admin/course/${id}`,
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-};
-
 // Load navBar function
 const loadNavBar = () => {
   // Reference navBar from DOM
@@ -88,7 +78,7 @@ const loadNavBar = () => {
                 <i class="fa fa-th"></i>
                 <span class="ml-2">Categories</span>
               </a>
-              <div class="dropdown-menu">
+              <div class="dropdown-menu" id="dropdownCategory">
                 <a class="dropdown-item" href="#">
                   <i class="fa fa-laptop mr-1"></i>
                   <span>Development</span>
@@ -141,7 +131,7 @@ const loadNavBar = () => {
         </ul>
       </div>
       <div class="col-md-1 nav-cart">
-        <i class="fa fa-shopping-basket"></i>
+        <i class="fa fa-shopping-basket" onclick="goToCart()"></i>
       </div>`;
   `<div class="col-md-5 text-right">
         <button
@@ -204,15 +194,47 @@ const loadNavBar = () => {
 };
 loadNavBar();
 
-const addToCart = (courseModel) => {
+const addToCart = (id) => {
   // Get cart from localStorage
   let cart = JSON.parse(localStorage.getItem("CART"));
 
+  let item = { courseId: id };
+
   // Append
   if (cart) {
-    cart.push(courseModel);
+    cart.push(item);
   } else {
     cart = [];
-    cart.push(courseModel);
+    cart.push(item);
   }
+
+  console.log(cart);
+
+  // Store cart to localStorage
+  localStorage.setItem("CART", JSON.stringify(cart));
 };
+
+const goToCart = () => {
+  document.location.href = "../../Elearning/cart.html";
+};
+
+const loadDropdownCategory = () => {
+  axios({
+    url: `http://localhost:8080/api/category`,
+    method: "GET",
+  }).then((resp) => {
+    // console.log(resp)
+
+    let rs = "";
+    resp.data.forEach((item) => {
+      rs += ` <a class="dropdown-item" href="javascript:void(0)" onclick = "loadCourseByCategory(${item.id})"}>
+      <i class="${item.icon}"></i>
+      <span>${item.title}</span>
+    </a>`;
+    });
+    // console.log(rs);
+    document.getElementById("dropdownCategory").innerHTML = rs;
+  });
+};
+
+loadDropdownCategory();
