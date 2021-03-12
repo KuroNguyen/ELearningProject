@@ -91,6 +91,8 @@ const loadData = () => {
       document.getElementById("price").innerHTML = formatter.format(
         resp.data.price
       );
+      // Add onclick to addToCart button
+      document.getElementById("addToCart").addEventListener("click", addToCart(resp.data.id));
     })
     .catch((error) => {
       console.log({ error });
@@ -114,3 +116,7 @@ const loadCourseTargets = () => {
     });
 };
 loadData();
+
+const goToShoppingCart = () => {
+  document.location.href("cart.html")
+}

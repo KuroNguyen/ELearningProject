@@ -19,7 +19,7 @@ function loadCourse() {
         courseRow += `<tr>
                 <th>${courseDto.id}</th>
                 <td>${courseDto.title}</td>
-                <td><img height="50" class="p-1 border" src="${courseDto.image}"></td>
+                <td><img height="50" class="p-1 border" src="http://localhost:8080/${courseDto.image}"></td>
                 <td>${courseDto.lecturesCount}</td>
                 <td>${courseDto.price}</td>
                 

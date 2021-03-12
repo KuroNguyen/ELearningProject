@@ -98,6 +98,7 @@ const loadData = () => {
       console.log({ error });
     });
 };
+loadData();
 
 function editCourse() {
   let flag = true;

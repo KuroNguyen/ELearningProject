@@ -22,7 +22,7 @@ const loadCourses = () => {
                    </div>
                    <div class="seller-label">Sale 10%</div>
                    <div class="course-overlay">
-                       <a href="details.html">
+                       <a href="details.html?id=${courseDto.id}">
                            <h6 class="course-title">
                            ${courseDto.title}
                            </h6>
@@ -56,7 +56,7 @@ const loadCourses = () => {
                    <span>${courseDto.price} đ</span>
                </div>
                <div class="course-overlay">
-                   <a href="details.html">
+                   <a href="details.html?id=${courseDto.id}">
                        <h6 class="course-title">
                            ${courseDto.title}
                        </h6>
