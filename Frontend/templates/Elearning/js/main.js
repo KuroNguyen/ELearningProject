@@ -32,7 +32,7 @@ const login = () => {
       location.reload();
     })
     .catch((error) => {
-      console.log({ ...error });
+      console.log({ error });
     });
 };
 

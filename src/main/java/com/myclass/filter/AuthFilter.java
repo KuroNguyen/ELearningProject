@@ -55,6 +55,11 @@ public class AuthFilter extends BasicAuthenticationFilter {
 			return;
 		}
 		
+		if (request.getServletPath().startsWith("/api/auth/login")) {
+			chain.doFilter(request, response);
+			return;
+		}
+		
 		// Get token from request
 		String tokenHeader = request.getHeader("Authorization");
 		if (tokenHeader == null || tokenHeader.isEmpty() || !tokenHeader.startsWith("Bearer ")) {
