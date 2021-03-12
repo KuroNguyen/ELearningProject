@@ -165,7 +165,7 @@ function editCourse() {
         // GỌI API THÊM MỚI
         axios({
           url: "http://localhost:8080/api/admin/course",
-          method: "POST",
+          method: "PUT",
           data: courseDto,
           headers: {
             Authorization: "Bearer " + localStorage.getItem("USER_TOKEN"),
@@ -174,16 +174,12 @@ function editCourse() {
           .then(function (resp) {
             console.log("Thành công! " + resp.data);
             swal("Good job!", "Sửa Thành Công!", "success");
-            // saveImage();
-    
-            // addUserCourse();
+
           })
           .catch(function (err) {
             console.log({ err });
             swal("Sorry", "Sửa Thất Bại!", "error");
           });
-    
-        //////////////
       }
     }
 }
