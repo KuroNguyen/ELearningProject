@@ -13,21 +13,23 @@ import javax.persistence.Table;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import com.myclass.core.BaseEntity;
+
 @Entity
 @Table(name = "user_courses")
 @Where(clause = "active=true")
 @SQLDelete(sql = "UPDATE user_courses SET active = false WHERE id = ?")
-public class UserCourses {
+public class UserCourses extends BaseEntity<String>{
 	
 	@EmbeddedId
 	UserCourseKey id;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@MapsId("userId")
 	@JoinColumn(name = "user_id")
 	User user;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL)
     @MapsId("courseId")
     @JoinColumn(name = "course_id",insertable = false, updatable = false)
     Course course;

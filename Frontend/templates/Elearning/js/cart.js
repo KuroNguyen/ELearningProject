@@ -19,7 +19,6 @@ const loadShoppingCart = async () => {
     return;
   }
 
-
   // Get courses information
   let coursePromiseArray = await cartItem.map(async (item) => {
     let course = await getCourseData(item.courseId);
@@ -106,6 +105,52 @@ const removeFromCart = (courseId) => {
   localStorage.setItem("CART", JSON.stringify(cartItems));
   // Reload
   location.reload();
+};
+
+const buyCourse = () => {
+  // Get token from localStorage
+  let token = localStorage.getItem("USER_TOKEN");
+
+  // Check login to execute buy course
+  if (!token) {
+    swal("Thông báo", "Mời bạn đăng nhập trước khi mua", "error");
+    return;
+  }
+  // Get cartItems form localStorage
+  let cartItems = JSON.parse(localStorage.getItem("CART"));
+
+  // Generate JSON request body
+  let courseDtos = [];
+  cartItems.forEach((item) => {
+    let courseDto = {
+      id: item.courseId,
+    };
+    courseDtos.push(courseDto);
+  });
+  console.log(courseDtos);
+
+  let buyCourseDto = {
+    courseDto: courseDtos,
+    totalPrice: "total",
+  };
+  console.log(buyCourseDto);
+
+  // Call buyCourse api
+  axios({
+    url: "http://localhost:8080/api/course/buy",
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    data: buyCourseDto,
+  })
+    .then((resp) => {
+      console.log(resp);
+      swal("Thành công", "Mua khóa học thành công", "success");
+    })
+    .catch((error) => {
+      console.log({ error });
+    });
 };
 
 loadShoppingCart();

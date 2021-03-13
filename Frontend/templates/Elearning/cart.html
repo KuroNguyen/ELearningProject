@@ -134,12 +134,114 @@
 
                 <small id="price">1.600.000 đ</small>
               </h2>
-              <button class="btn btn-danger w-100">Check out</button>
+              <button class="btn btn-danger w-100" onclick="buyCourse()">
+                Check out
+              </button>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- SIGN IN MODAL -->
+    <div class="modal" id="loginModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Đăng nhập</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="emailgEmaill">Email</label>
+                <input type="email" class="form-control" id="lgEmail" />
+              </div>
+              <div class="form-group">
+                <label for="lgPassword">Password</label>
+                <input type="password" class="form-control" id="lgPassword" />
+              </div>
+            </form>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              onclick="login()"
+            >
+              Đăng nhập
+            </button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Thoát
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIGN UP MODAL -->
+    <div class="modal" id="signUpModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Đăng ký</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="rgName">Name</label>
+                <input type="text" class="form-control" id="rgName" />
+                <span class="text-danger" id="fullnameErr"></span>
+              </div>
+              <div class="form-group">
+                <label for="rgEmail">Email</label>
+                <input type="email" class="form-control" id="rgEmail" />
+                <span class="text-danger" id="emailErr"></span>
+              </div>
+              <div class="form-group">
+                <label for="rgPassword">Password</label>
+                <input type="password" class="form-control" id="rgPassword" />
+                <span class="text-danger" id="passwordErr"></span>
+              </div>
+              <div class="form-group">
+                <label for="rgConfirm">Confirm</label>
+                <input type="password" class="form-control" id="rgConfirm" />
+                <span class="text-danger" id="confirmErr"></span>
+              </div>
+            </form>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="btnDangKi">
+              Đăng ký
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-dismiss="modal"
+              id="btnThoat"
+            >
+              Thoát
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <footer class="py-4 mt-4 text-center border-top">
       <span>Copyright © 2019 Cybersoft, Inc.</span>
@@ -151,8 +253,6 @@
     <script src="./lib/popper.js/popper.min.js"></script>
     <script src="./lib/bootstrap/bootstrap.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../admin/assets/js/auth/signUp.js"></script>
-    <script src="../admin/assets/js/user/login.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- Control js -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

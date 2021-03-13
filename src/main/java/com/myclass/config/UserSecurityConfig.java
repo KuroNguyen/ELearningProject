@@ -33,7 +33,9 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable() // turn off fraudulent prevention
 				.antMatcher("/api/**").authorizeRequests()
 				.antMatchers("/api/course").permitAll()
-				.antMatchers("/api/user","/api/course/buy").authenticated();
+				.antMatchers("/api/user").authenticated();
+//				.antMatchers("/api/course/buy").hasAnyRole("ADMIN","TEACHER","USER")
+//				.antMatchers("/api/user","/api/course/buy").authenticated();
 				
 		http.addFilter(new AuthFilter(authenticationManager(), userDetailsService));
 		// Not use session

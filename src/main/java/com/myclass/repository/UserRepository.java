@@ -11,7 +11,7 @@ import com.myclass.dto.UserDto;
 import com.myclass.entity.User;
 
 @Repository
-public interface UserRepository extends BaseRepository<User, Integer>{
+public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	@Query("Select u from User u where u.email = :email")
 	public User custom(@Param("email") String email);

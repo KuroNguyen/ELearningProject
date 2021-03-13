@@ -316,4 +316,9 @@ public class CourseServiceImpl implements CourseService {
 	public List<CourseDto> getAllByCategoryId(int id) {
 		return courseRepository.getAllByCategoryId(id);
 	}
+
+	@Override
+	public List<CourseDto> getAllByEmail(String email) {
+		return courseRepository.getAllWithCategoryByEmail(email);
+	}
 }

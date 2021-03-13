@@ -23,6 +23,8 @@ public interface CourseService {
 	List<CourseDto> getAllWithCategory();
 
 	List<CourseDto> getAllByCategoryId(int id);
+	
+	List<CourseDto> getAllByEmail(String email);
 
 	void add(AddCourseDto entity);
 

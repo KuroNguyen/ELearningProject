@@ -87,6 +87,20 @@ public class CourseController {
 		}
 		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 	}
+	
+
+	@GetMapping("learning")
+	public Object getLearning(@AuthenticationPrincipal UserDetails userDetails) {
+		System.out.println(userDetails.getUsername());
+		String email = userDetails.getUsername();
+		try {
+			List<CourseDto> dtos = courseService.getAllByEmail(email);
+			return new ResponseEntity<Object>(dtos,HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
+	}
 
 	@GetMapping("paging/{orderBy}/{pageIndex}/{pageSize}")
 	public ResponseEntity<Page<Course>> paging(@PathVariable String orderBy, @PathVariable int pageIndex,

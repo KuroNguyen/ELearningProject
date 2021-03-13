@@ -149,7 +149,8 @@ const loadNavBar = () => {
           Sign up
         </button>
       </div>
-    </div>`;
+    </div>
+    `;
   // Check login state
   // Get userModel from localStorage
   let userModel = JSON.parse(localStorage.getItem("USER_INFO"));
