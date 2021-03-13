@@ -2,6 +2,7 @@ package com.myclass.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,10 @@ import com.myclass.service.UserService;
 @RestController
 @RequestMapping("api/auth")
 public class AuthController {
+	
+	@Value("${roleId.user}")
+	private int ID_ROLE_USER;
+	
 	private AuthService authService;
 	private UserService userService;
 
@@ -44,7 +49,8 @@ public class AuthController {
 	@PostMapping("register")
 	public Object register(@Valid @RequestBody UserDto dto) {
 		try {	
-		
+				System.out.println(dto.toString());
+				dto.setRoleId(ID_ROLE_USER);
 				userService.insert(dto);
 				return new ResponseEntity<Object>(HttpStatus.CREATED);
 			

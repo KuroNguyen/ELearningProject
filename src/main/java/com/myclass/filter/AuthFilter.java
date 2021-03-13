@@ -43,7 +43,6 @@ public class AuthFilter extends BasicAuthenticationFilter {
 		String tokenHeader = request.getHeader("Authorization");
 
 		if (request.getServletPath().startsWith("/api/course") && (tokenHeader == null || tokenHeader.isEmpty() || !tokenHeader.startsWith("Bearer "))) {
-			System.out.println("DTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
 			chain.doFilter(request, response);
 			return;
 		}
