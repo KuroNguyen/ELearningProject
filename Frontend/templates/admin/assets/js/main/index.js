@@ -14,6 +14,9 @@ function logout() {
   if (token != null) {
     // XÓA TOKEN KHỎI LOCALSTORAGE
     localStorage.removeItem("USER_TOKEN");
+    // XÓA USER_INFO KHỎI LOCALSTORAGE
+    localStorage.removeItem("USER_INFO");
+    
     document.location.href = "../auth/login.html";
   }
 }

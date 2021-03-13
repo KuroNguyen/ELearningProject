@@ -115,9 +115,9 @@ public class AdminCourseController {
 			if (!courseService.checkExistById(entity.getId()))
 				return new ResponseEntity<Object>(idIsNotExist, HttpStatus.BAD_REQUEST);
 
-			// check xem title có bị trùng không
-			if (courseService.checkExistByTitle(entity.getTitle()))
-				return new ResponseEntity<Object>("Title is exist", HttpStatus.BAD_REQUEST);
+//			// check xem title có bị trùng không
+//			if (courseService.checkExistByTitle(entity.getTitle()))
+//				return new ResponseEntity<Object>("Title is exist", HttpStatus.BAD_REQUEST);
 
 			// check xem categoryId có tồn tại chưa
 			if (!categoryService.checkExistById(entity.getCategoryId()))

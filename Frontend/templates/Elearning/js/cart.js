@@ -11,6 +11,14 @@ const loadShoppingCart = async () => {
   let itemList = document.getElementById("itemList");
   // Get cart data from localStorage
   let cartItem = JSON.parse(localStorage.getItem("CART"));
+  // check cartItem
+  if (!cartItem) {
+    itemList.innerHTML = "";
+    document.getElementById("promotionPrice").innerHTML = formatter.format(0);
+    document.getElementById("price").innerHTML = formatter.format(0);
+    return;
+  }
+
 
   // Get courses information
   let coursePromiseArray = await cartItem.map(async (item) => {

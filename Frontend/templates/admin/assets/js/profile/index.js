@@ -100,8 +100,7 @@ function editProfileImage(){
 }
 
 function editProfilePassword(){
-        
-        
+
     axios({
         url: 'http://localhost:8080/api/admin/user/current',
         method: 'GET',

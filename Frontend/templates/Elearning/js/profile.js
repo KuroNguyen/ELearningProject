@@ -96,7 +96,7 @@ async function saveProfile() {
       });
     })
     .catch((error) => {
-      console.log(error);
+      console.log({error});
       swal("Thất bại", "Cập nhật thất bại!", "error");
     });
 }

@@ -130,7 +130,6 @@ public class UserServiceImpl implements UserService {
 		entity.setAddress(dto.getAddress());
 		entity.setPhone(dto.getPhone());
 		entity.setAvatar(dto.getAvatar());
-		entity.setRoleId(2);
 
 		userRepository.save(entity);
 	}

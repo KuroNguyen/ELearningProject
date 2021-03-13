@@ -85,7 +85,7 @@ public class CourseServiceImpl implements CourseService {
 	public void edit(CourseDto dto) {
 		// Get entity from database
 		Course entity = courseRepository.findById(dto.getId()).get();
-		entity.setId(0);
+	
 		entity.setTitle(dto.getTitle());
 		entity.setImage(dto.getImage());
 		entity.setLecturesCount(dto.getLecturesCount());

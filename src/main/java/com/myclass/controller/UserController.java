@@ -228,6 +228,7 @@ public class UserController {
 			if (id != userDto.getId()) {
 				return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 			}
+			
 			userService.editProfile(userDto);
 			return new ResponseEntity<Object>(HttpStatus.OK);
 		} catch (Exception e) {

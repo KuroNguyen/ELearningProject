@@ -142,14 +142,6 @@ function editCourse() {
     document.getElementById("contentError").innerHTML = "";
   }
 
-  let imageInput = document.getElementById("image");
-  if (imageInput.files.length === 0) {
-    flag = false;
-    document.getElementById("imageError").innerHTML = "Vui lòng chọn hình ảnh";
-  } else {
-    document.getElementById("imageError").innerHTML = "";
-  }
-
   let priceInput = document.getElementById("price").value;
   if (priceInput == 0) {
     flag = false;
@@ -194,7 +186,7 @@ function editCourse() {
     console.log(courseDto);
     // GỌI API THÊM MỚI
     axios({
-      url: "http://localhost:8080/api/admin/course",
+      url: `http://localhost:8080/api/admin/course/${id}`,
       method: "PUT",
       data: courseDto,
       headers: {
@@ -204,6 +196,7 @@ function editCourse() {
       .then(function (resp) {
         console.log("Thành công! " + resp.data);
         swal("Good job!", "Sửa Thành Công!", "success");
+        document.location.href = "../../admin/course/course-list.html";
       })
       .catch(function (err) {
         console.log({ err });
